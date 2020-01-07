@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <!-- <meta name="author" content=""> -->
+  <!-- <meta name="description" content=""> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/styles/src/main.css" rel="stylesheet" type="text/css">
+  <link href="/styles/src/tools.css" rel="stylesheet" type="text/css">
+  <link href="/styles/src/buttons.css" rel="stylesheet" type="text/css">
+  <% if (locals.styles) { %>
+    <% styles.forEach(function(style) { %>
+      <link href="/styles/src/<%- style %>.css" rel="stylesheet" type="text/css">
+    <% }) %>
+  <% } %>
+</head>
+<body>
+  <%- include('../elements/header', { headerItems: headerItems }); %>
+  <%- include('../' + view); %>
+  <%- include('../elements/footer'); %>
+  <script src="/scripts/jquery.min.js"></script>
+  <% if (locals.scripts) { %>
+    <% scripts.forEach(function(script) { %>
+      <script src="/scripts/src/<%- script %>.js"></script>
+    <% }) %>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,65 @@
+form {
+  font-size: 0.95em;
+}
+
+input,
+textarea {
+  font-family: sans-serif;
+  -webkit-box-shadow: 0 1px 3px 0px rgba(50,50,50,0.2);
+  -moz-box-shadow: 0 1px 3px 0px rgba(50,50,50,0.2);
+  box-shadow: 0 1px 3px 0px rgba(50,50,50,0.2);
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea {
+  outline: none;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 91%;
+  margin: 0.5em 0;
+  padding: 0.7em 0.9em;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.input-group textarea {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #999;
+  -webkit-box-shadow: 0 1px 3px 0px rgba(50,50,50,0.3);
+  -moz-box-shadow: 0 1px 3px 0px rgba(50,50,50,0.3);
+  box-shadow: 0 1px 3px 0px rgba(50,50,50,0.3);
+}
+
+.translation-group {
+  text-align: left;
+  margin: 1em 0;
+}
+
+.translation-group p {
+  font-weight: bold;
+  margin: 0.2em;
+  color: #444;
+}
+
+.translation-group .lang {
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #444;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.5em;
+  margin-left: -2em;
+  margin-right: 0.5em;
+}

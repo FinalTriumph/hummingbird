@@ -1,0 +1,17 @@
+.db {
+  display: block;
+}
+
+.dib-vat {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.tal {
+  text-align: left;
+}
+
+/* Padding top about headers height */
+.pth {
+  padding-top: 3em;
+}

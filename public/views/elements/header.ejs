@@ -1,0 +1,11 @@
+<div id="header">
+  <div class="content">
+    <div class="container">
+      <div class="logo">/ Logo /</div>
+      <div class="nav">
+        <!-- TODO -->
+        <% Object.keys(headerItems).forEach(function(key) { %><a href="<%- headerItems[key]['href'] %>" class="nav-item <% if (activeHeaderItem == key) { %>active<% } %>"><%- headerItems[key]['title'] %></a><% }); %>
+      </div>
+    </div>
+  </div>
+</div>
