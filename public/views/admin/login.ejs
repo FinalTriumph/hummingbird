@@ -1,10 +1,14 @@
-<div id="admin-login">
-  <div class="logo"><a href="/">/ Logo #Public side - Home /</a></div>
-  <form method="post" action="/api/admin/login">
-    <div class="input-group">
-      <input type="text" name="username" placeholder="Username" required/>
-      <input type="password" name="password" placeholder="Password" required/>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="admin-login">
+      <p>Login as administrator</p>
+      <form method="post" action="/api/admin/login">
+        <div class="input-group">
+          <input type="text" name="username" placeholder="Username" required/>
+          <input type="password" name="password" placeholder="Password" required/>
+        </div>
+        <input class="btn-style-2" type="submit" value="Login" />
+      </form>
     </div>
-    <input class="btn-style-2" type="submit" value="Login" />
-  </form>
+  </div>
 </div>

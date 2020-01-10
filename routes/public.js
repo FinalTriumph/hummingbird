@@ -1,38 +1,20 @@
 const router = require('express').Router();
 
 const headerItems = {
-  'home': {
-    'href': '/',
-    'title': 'Home'
-  },
-  'products': {
-    'href': '/products',
-    'title': 'Products'
-  },
-  'about': {
-    'href': '/about',
-    'title': 'About'
-  },
-  'contact': {
-    'href': '/contact',
-    'title': 'Contact'
-  },
-  'admin': {
-    'href': '/admin',
-    'title': '- Admin side -'
-  }
+  'home': { 'href': '/', 'title': 'Home' },
+  'products': { 'href': '/products', 'title': 'Products' },
+  'about': { 'href': '/about', 'title': 'About' },
+  'contact': { 'href': '/contact', 'title': 'Contact' },
+  // TODO Only for development, will be removed
+  'admin': { 'href': '/admin', 'title': '- Admin side -' }
 };
-
-// TODO
-const mainStyles = ['elements/header', 'elements/footer'];
 
 router.route('/').get((req, res) => {
   res.render('layouts/main', {
     title: 'Home',
     view: 'index',
     headerItems: headerItems,
-    activeHeaderItem: 'home',
-    styles: mainStyles
+    activeHeaderItem: 'home'
   });
 });
 
@@ -41,8 +23,7 @@ router.route('/products').get((req, res) => {
     title: 'Products',
     view: 'products',
     headerItems: headerItems,
-    activeHeaderItem: 'products',
-    styles: mainStyles
+    activeHeaderItem: 'products'
   });
 });
 
@@ -51,8 +32,7 @@ router.route('/about').get((req, res) => {
     title: 'About',
     view: 'about',
     headerItems: headerItems,
-    activeHeaderItem: 'about',
-    styles: mainStyles
+    activeHeaderItem: 'about'
   });
 });
 
@@ -61,8 +41,7 @@ router.route('/contact').get((req, res) => {
     title: 'Contact',
     view: 'contact',
     headerItems: headerItems,
-    activeHeaderItem: 'contact',
-    styles: mainStyles
+    activeHeaderItem: 'contact'
   });
 });
 

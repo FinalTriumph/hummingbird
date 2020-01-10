@@ -4,13 +4,23 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-  /* background: #0B2E58; */
-  /* background: #234EA6; */
-  /* background: #055C9D; */
   background: #145DA0;
-  /* background: #003060; */
-  position: relative;
+  position:relative;
   min-height: 100vh;
+}
+
+.content-wrapper {
+  min-height: 100vh;
+  background: #fff;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.content {
+  /* Header */
+  padding-top: 3em;
+  /* Footer */
+  padding-bottom: 11em;
 }
 
 a {
@@ -20,10 +30,4 @@ a {
 
 button {
   font-family: sans-serif;
-}
-
-.content {
-  max-width: 1000px;
-  margin: auto;
-  background: #fff;
 }

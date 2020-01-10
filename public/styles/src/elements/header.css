@@ -1,4 +1,5 @@
-#header {
+/* === MAIN === */
+.header {
   position: fixed;
   width: 100%;
   background: #fafaff;
@@ -7,11 +8,15 @@
 	-moz-box-shadow: 0 5px 10px -10px rgba(0,0,0,0.5);
 	box-shadow: 0 5px 10px -10px rgba(0,0,0,0.5);
 }
-#header .container {
+.header .content {
+  padding: 0;
+  max-width: 1000px;
+  margin: auto;
   text-align: right;
 }
+
 /* logo */
-#header .logo {
+.header .logo {
   float: left;
   padding: 0.9em 1.1em 0.8em 1.1em;
   font-weight: 600;
@@ -19,7 +24,7 @@
 }
 
 /* Nav Item */
-#header .nav-item {
+.header .nav-item {
   display: inline-block;
   color: #333;
   text-decoration: none;
@@ -28,23 +33,85 @@
   border-bottom: 2px solid #fafafa;
   transition: border-color 0.2s;
 }
-
 /* Active */
-#header .nav-item.active {
-  /* border-color: #234EA6; */
-  /* border-color: #055C9D; */
+.header .nav-item.active {
   border-color: #145DA0;
   color: #222;
 }
-
 /* Hover */
-#header .nav-item:hover {
-  /* border-color: #234EA6;
-  color: #234EA6;
-  */
-  /* border-color: #055C9D;
-  color: #055C9D; */
-
+.header .nav-item:hover {
   border-color: #145DA0;
   color: #145DA0;
+}
+
+/* Nav lines */
+.header .nav-lines {
+  display: none;
+  cursor: pointer;
+}
+.header .nav-lines:hover hr  {
+  background: #145DA0;
+}
+.header .nav-lines hr {
+  height: 2px;
+  background: #222;
+  border: none;
+}
+.header .horizontal,
+.header .cross {
+  position: absolute;
+  width: 1.8em;
+  top: 0.6em;
+  right: 1.3em;
+}
+.header .horizontal {
+  top: 0.7em;
+  right: 1.5em;
+}
+.header .cross .cross_1 {
+  transform: rotateZ(45deg) translateY(0.4em);
+}
+.header .cross .cross_2 {
+  transform: rotateZ(-45deg) translateY(-0.4em);
+}
+.header .horizontal .line {
+  margin: 4px 0;
+}
+
+/* 750px */
+@media only screen and (max-width: 750px) {
+  /* Nav */
+  .header .nav {
+    display: none;
+    position: absolute;
+    top: 2.9em;
+    right: 0em;
+    background: #fafaff;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 0.5em 0 1em 0;
+    -webkit-box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
+  	-moz-box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
+  	box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
+  }
+  /* Nav lines */
+  .header .nav-lines {
+    display: block;
+  }
+  .header .nav-lines .cross {
+    display: none;
+  }
+  /* Nav Item */
+  .header .nav-item {
+    display: block;
+    padding: 0.6em 0.2em 0.4em 0.2em;
+    margin: 0.5em 3em;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  /* Nav */
+  .header .nav {
+    display: block !important;
+  }
 }

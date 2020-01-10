@@ -5,6 +5,7 @@ function checkAdmin(req, res, next) {
   const authorized = req.session.authorized;
   const username = req.session.username;
   const status = req.session.status;
+
   if (!authorized || !username || !username.length || status !== 'admin') {
     return res.json({'status': 'error', 'message': 'Not authorized action'});
   }
@@ -44,5 +45,7 @@ router.route('/update/:id').post(checkAdmin, (req, res) => {
     .then(() => res.json({'status': 'ok'}))
     .catch(err => res.json({'status': 'error', 'message': 'Product not updated: ' + err}));
 });
+
+// TODO Delete
 
 module.exports = router;

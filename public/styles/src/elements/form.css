@@ -63,3 +63,10 @@ textarea {
   margin-left: -2em;
   margin-right: 0.5em;
 }
+
+/* 450px */
+@media only screen and (max-width: 450px) {
+  .translation-group .lang {
+    margin: 0.5em 0.5em 0em 0.5em;
+  }
+}

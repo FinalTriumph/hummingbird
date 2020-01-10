@@ -9,6 +9,8 @@
   <link href="/styles/src/main.css" rel="stylesheet" type="text/css">
   <link href="/styles/src/tools.css" rel="stylesheet" type="text/css">
   <link href="/styles/src/buttons.css" rel="stylesheet" type="text/css">
+  <link href="/styles/src/elements/header.css" rel="stylesheet" type="text/css">
+  <link href="/styles/src/elements/footer.css" rel="stylesheet" type="text/css">
   <% if (locals.styles) { %>
     <% styles.forEach(function(style) { %>
       <link href="/styles/src/<%- style %>.css" rel="stylesheet" type="text/css">
@@ -20,6 +22,7 @@
   <%- include('../' + view); %>
   <%- include('../elements/footer'); %>
   <script src="/scripts/jquery.min.js"></script>
+  <script src="/scripts/src/main.js"></script>
   <% if (locals.scripts) { %>
     <% scripts.forEach(function(script) { %>
       <script src="/scripts/src/<%- script %>.js"></script>

@@ -1,11 +1,20 @@
-<div id="header">
+<div class="header">
   <div class="content">
-    <div class="container">
-      <div class="logo">/ Logo /</div>
-      <div class="nav">
-        <!-- TODO -->
-        <% Object.keys(headerItems).forEach(function(key) { %><a href="<%- headerItems[key]['href'] %>" class="nav-item <% if (activeHeaderItem == key) { %>active<% } %>"><%- headerItems[key]['title'] %></a><% }); %>
+    <div class="logo">/ Logo /</div>
+    <div class="nav-lines">
+      <div class="cross">
+        <hr class="cross_1" />
+        <hr class="cross_2" />
+      </div >
+      <div class="horizontal">
+        <hr class="line"/>
+        <hr class="line"/>
+        <hr class="line"/>
       </div>
+    </div>
+    <div class="nav">
+      <!-- TODO -->
+      <% Object.keys(headerItems).forEach(function(key) { %><a href="<%- headerItems[key]['href'] %>" class="nav-item <% if (activeHeaderItem == key) { %>active<% } %>"><%- headerItems[key]['title'] %></a><% }); %>
     </div>
   </div>
 </div>
