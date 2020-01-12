@@ -24,41 +24,24 @@
   font-size: 1.1em;
 }
 
-.products-list {
-  min-height: 2em;
-  padding-bottom: 1em;
-}
-
-.product-list-item {
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  margin: 1em 2em;
-  padding: 1.5em;
-  text-align: left;
-}
-
-.product-list-item .item-image {
-  width: 15%;
-  height: 150px;
-  background-color: #eee; /* Used if the image is unavailable */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.product-list-item .text-items {
-  margin-left: 1.5em;
-  width: 65%;
-  color: #333;
-}
-.product-list-item .text-items p {
+/* Products List */
+.products-list-admin .product-item-buttons button {
+  display: inline-block;
+  vertical-align: top;
   margin: 0;
+  width: 48%;
+  margin: 0 1%;
 }
 
-.product-list-item .text-items .item-title {
-  font-weight: bold;
-  margin-bottom: 1em;
+.btn-custom-color-1 {
+  border-color: #cc0000;
+}
+.btn-custom-color-1:hover {
+  background: #cc0000;
+  border-color: #cc0000;
+  color: #fff;
+}
+.btn-custom-color-1:active {
+  background: #e60000;
+  border-color: #e60000;
 }

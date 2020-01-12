@@ -7,7 +7,7 @@ const headerItems = {
   'translations': { 'href': '/admin/translations', 'title': 'Translations' },
   'logout': { 'href': '/admin/logout', 'title': 'Logout' },
   //
-  'public': { 'href': '/', 'title': '- Public side -' }
+  'public': { 'href': '/', 'title': 'Public side' }
 };
 
 const headerItemsNotAuthorized = {
@@ -21,6 +21,7 @@ function checkAdmin(req, res, next) {
 
   if (!authorized || !username || !username.length || status !== 'admin') {
     return res.render('layouts/admin', {
+      requestLang: req.lang,
       title: 'Login as administrator',
       view: 'login',
       headerItems: headerItemsNotAuthorized,
@@ -34,6 +35,7 @@ function checkAdmin(req, res, next) {
 
 router.route('/').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
+    requestLang: req.lang,
     title: 'Dashboard | Admin',
     view: 'dashboard',
     headerItems: headerItems,
@@ -43,6 +45,7 @@ router.route('/').get(checkAdmin, (req, res) => {
 
 router.route('/products').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
+    requestLang: req.lang,
     title: 'Products | Admin',
     view: 'products',
     headerItems: headerItems,
@@ -52,6 +55,7 @@ router.route('/products').get(checkAdmin, (req, res) => {
 
 router.route('/products/add').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
+    requestLang: req.lang,
     title: 'Add New Product | Admin',
     view: 'products/add',
     headerItems: headerItems,
@@ -62,6 +66,7 @@ router.route('/products/add').get(checkAdmin, (req, res) => {
 
 router.route('/products/edit/:id').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
+    requestLang: req.lang,
     title: 'Edit Product | Admin',
     view: 'products/edit',
     headerItems: headerItems,
@@ -72,6 +77,7 @@ router.route('/products/edit/:id').get(checkAdmin, (req, res) => {
 
 router.route('/translations').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
+    requestLang: req.lang,
     title: 'Translations | Admin',
     view: 'translations',
     headerItems: headerItems,

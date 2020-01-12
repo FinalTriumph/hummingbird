@@ -10,11 +10,21 @@
         <hr class="line"/>
         <hr class="line"/>
         <hr class="line"/>
+        <hr class="line"/>
       </div>
     </div>
-    <div class="nav">
+    <div class="nav div-vat">
       <!-- TODO -->
-      <% Object.keys(headerItems).forEach(function(key) { %><a href="<%- headerItems[key]['href'] %>" class="nav-item <% if (activeHeaderItem == key) { %>active<% } %>"><%- headerItems[key]['title'] %></a><% }); %>
+      <% Object.keys(headerItems).forEach(function(key) { %><a href="<%= headerItems[key]['href'] %>" class="nav-item <% if (activeHeaderItem == key) { %>active<% } %>"><%- headerItems[key]['title'] %></a><% }); %>
+    </div>
+    <div class="lang-nav dib-vat">
+      <div class="active-lang"><%= requestLang %></div>
+      <div class="lang-nav-list">
+        <a href="/en" class="lang-nav-list-item">EN</a>
+        <a href="/de" class="lang-nav-list-item">DE</a>
+        <a href="/lv" class="lang-nav-list-item">LV</a>
+        <a href="/ru" class="lang-nav-list-item">RU</a>
+      </div>
     </div>
   </div>
 </div>

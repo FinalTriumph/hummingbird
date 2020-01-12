@@ -21,6 +21,9 @@
   <%- include('../elements/header', { headerItems: headerItems }); %>
   <%- include('../' + view); %>
   <%- include('../elements/footer'); %>
+  <script type="text/javascript">
+    const requestLang = '<%= requestLang %>';
+  </script>
   <script src="/scripts/jquery.min.js"></script>
   <script src="/scripts/src/main.js"></script>
   <% if (locals.scripts) { %>

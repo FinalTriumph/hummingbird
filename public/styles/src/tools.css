@@ -10,8 +10,15 @@
 .tal {
   text-align: left;
 }
+.tac {
+  text-align: center;
+}
 
 /* Padding top about headers height */
 .pth {
   padding-top: 3em;
+}
+
+.ma {
+  margin: auto;
 }

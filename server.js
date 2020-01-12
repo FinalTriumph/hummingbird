@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const cookieParser = require('cookie-parser')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -23,11 +24,41 @@ app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+app.use(cookieParser());
+
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
+});
+
+// Set language to be used in all router files
+app.use(function(req, res, next) {
+    const allowedLanguages = ['en', 'de', 'lv', 'ru'];
+    let language = 'en';
+
+    var match = req.url.match(/^\/([A-Z]{2})([\/\?].*)?$/i);
+    // Url language
+    if (match) {
+      if (allowedLanguages.indexOf(match[1]) > -1) {
+        language = match[1];
+        req.lang = language;
+
+        if (!req.cookies['language'] || req.cookies['language'] !== language) {
+          res.cookie('language', language, { maxAge: 900000, httpOnly: true });
+        }
+      }
+      req.url = match[2] || '/';
+    }
+    // Cookie language
+    else if (req.cookies['language'] && allowedLanguages.indexOf(req.cookies['language']) > -1) {
+        req.lang = req.cookies['language'];
+    }
+    else {
+      req.lang = language;
+    }
+    next();
 });
 
 // Full

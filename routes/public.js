@@ -6,11 +6,12 @@ const headerItems = {
   'about': { 'href': '/about', 'title': 'About' },
   'contact': { 'href': '/contact', 'title': 'Contact' },
   // TODO Only for development, will be removed
-  'admin': { 'href': '/admin', 'title': '- Admin side -' }
+  'admin': { 'href': '/admin', 'title': 'Admin side' }
 };
 
 router.route('/').get((req, res) => {
   res.render('layouts/main', {
+    requestLang: req.lang,
     title: 'Home',
     view: 'index',
     headerItems: headerItems,
@@ -20,6 +21,7 @@ router.route('/').get((req, res) => {
 
 router.route('/products').get((req, res) => {
   res.render('layouts/main', {
+    requestLang: req.lang,
     title: 'Products',
     view: 'products',
     headerItems: headerItems,
@@ -29,6 +31,7 @@ router.route('/products').get((req, res) => {
 
 router.route('/about').get((req, res) => {
   res.render('layouts/main', {
+    requestLang: req.lang,
     title: 'About',
     view: 'about',
     headerItems: headerItems,
@@ -38,6 +41,7 @@ router.route('/about').get((req, res) => {
 
 router.route('/contact').get((req, res) => {
   res.render('layouts/main', {
+    requestLang: req.lang,
     title: 'Contact',
     view: 'contact',
     headerItems: headerItems,

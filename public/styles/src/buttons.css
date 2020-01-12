@@ -63,16 +63,6 @@ btn-style-2
 /*
 .btn-custom-...
 */
-.btn-custom-margin-1 {
-  margin: 3em auto 2.5em auto;
-}
-
-.btn-custom-width-1 {
-  width: 100%;
-  margin: 0.7em 1.3em;
-  padding: 0.5em;
-}
-
 .btn-custom-color-1 {
   border-color: #cc0000;
 }
