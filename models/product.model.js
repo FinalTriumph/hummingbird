@@ -7,21 +7,21 @@ const ProductSchema = new mongoose.Schema({
     // English
     en: { type: String, required: true },
     // German
-    de: { type: String },
+    de: { type: String, required: true },
     // Latvian
-    lv: { type: String },
+    lv: { type: String, required: true },
     // Russian
-    ru: { type: String }
+    ru: { type: String, required: true }
   },
   description: {
     // English
     en: { type: String, required: true },
     // German
-    de: { type: String },
+    de: { type: String, required: true },
     // Latvian
-    lv: { type: String },
+    lv: { type: String, required: true },
     // Russian
-    ru: { type: String }
+    ru: { type: String, required: true }
   },
 });
 ProductSchema.plugin(timestamps);

@@ -14,7 +14,7 @@ btn-style-1
   padding: 0.8em;
   /* border: 2px solid #00A300; */
   border: 1px solid #00b700;
-  border-radius: 2px;
+  border-radius: 3px;
   -webkit-box-shadow: 0 2px 3px -2px rgba(30,30,30,0.7);
   -moz-box-shadow: 0 2px 3px -2px rgba(30,30,30,0.7);
   box-shadow: 0 2px 3px -2px rgba(30,30,30,0.7);
@@ -39,10 +39,10 @@ btn-style-2
   font-size: 0.9em;
   color: #fff;
   cursor: pointer;
-  margin-top: 0.7em;
+  margin-top: 1em;
   padding: 0.7em 3em;
   border: 1px solid #00A300;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 .btn-style-2:hover {
   background: #00b700;

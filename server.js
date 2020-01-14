@@ -68,8 +68,10 @@ app.use('/', publicRouter);
 app.use('/admin', adminRouter);
 // API
 const productsApiRouter = require('./routes/api/products');
+const translationsApiRouter = require('./routes/api/translations');
 const adminApiRouter = require('./routes/api/admin');
 app.use('/api/products', productsApiRouter);
+app.use('/api/translations', translationsApiRouter);
 app.use('/api/admin', adminApiRouter);
 
 // All public assets

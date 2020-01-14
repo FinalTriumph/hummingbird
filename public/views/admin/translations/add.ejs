@@ -1,0 +1,25 @@
+<div class="content-wrapper">
+  <div class="content">
+    <form class="translation-edit" method="post" action="/api/translations/add">
+      <p class="main-title">Add new translation</p>
+      <div class="input-group">
+        <div class="translation-group">
+          <div class="title">
+            <p >Key (should start with "t:", for example "t:Home")</p>
+          </div>
+          <input type="text" name="key" required/>
+        </div>
+        <div class="translation-group">
+          <div class="title">
+            <p>Translations</p>
+          </div>
+          <span class="lang">EN</span><input type="text" name="translations[en]" required/><br />
+          <span class="lang">DE</span><input type="text" name="translations[de]" required/><br />
+          <span class="lang">LV</span><input type="text" name="translations[lv]" required/><br />
+          <span class="lang">RU</span><input type="text" name="translations[ru]" required/>
+        </div>
+      </div>
+      <input class="btn-style-2" type="submit" value="Submit" />
+    </form>
+  </div>
+</div>

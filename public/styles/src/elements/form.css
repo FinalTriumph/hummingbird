@@ -22,11 +22,11 @@ textarea {
 .input-group input,
 .input-group textarea {
   width: 91%;
-  margin: 0.5em 0;
+  margin: 0.5em auto;
   padding: 0.7em 0.9em;
   font-size: 0.9em;
   border: 1px solid #ccc;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .input-group textarea {
@@ -43,13 +43,21 @@ textarea {
 }
 
 .translation-group {
+  text-align: center;
+  margin: 1em auto;
+}
+
+.translation-group .title {
+  width: 94.5%;
+  margin: auto;
+  padding: 0;
+  padding: 0.7em 0 0.5em 0;
   text-align: left;
-  margin: 1em 0;
 }
 
 .translation-group p {
   font-weight: bold;
-  margin: 0.2em;
+  margin: 0.2em 0;
   color: #444;
 }
 
@@ -64,9 +72,10 @@ textarea {
   margin-right: 0.5em;
 }
 
-/* 450px */
-@media only screen and (max-width: 450px) {
+/* 750px */
+@media only screen and (max-width: 750px) {
   .translation-group .lang {
-    margin: 0.5em 0.5em 0em 0.5em;
+    display: block;
+    margin: 0.5em 0.5em 0em 2.5%;
   }
 }

@@ -33,6 +33,7 @@ function checkAdmin(req, res, next) {
   next();
 }
 
+// Dashboard
 router.route('/').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
     requestLang: req.lang,
@@ -43,6 +44,7 @@ router.route('/').get(checkAdmin, (req, res) => {
   });
 });
 
+// Products
 router.route('/products').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
     requestLang: req.lang,
@@ -75,6 +77,7 @@ router.route('/products/edit/:id').get(checkAdmin, (req, res) => {
   });
 });
 
+// Translations
 router.route('/translations').get(checkAdmin, (req, res) => {
   res.render('layouts/admin', {
     requestLang: req.lang,
@@ -82,6 +85,17 @@ router.route('/translations').get(checkAdmin, (req, res) => {
     view: 'translations',
     headerItems: headerItems,
     activeHeaderItem: 'translations',
+  });
+});
+
+router.route('/translations/add').get(checkAdmin, (req, res) => {
+  res.render('layouts/admin', {
+    requestLang: req.lang,
+    title: 'Add New Translation | Admin',
+    view: 'translations/add',
+    headerItems: headerItems,
+    activeHeaderItem: '',
+    styles: ['elements/form'],
   });
 });
 

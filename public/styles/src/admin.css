@@ -10,21 +10,24 @@
   padding: 3em 0 4em 0;
 }
 
-/* === PRODUCTS === */
-.product-edit {
-  padding: 2em 3em 5em 3em;
+/* === PRODUCTS / TRANSLATIONS === */
+.product-edit,
+.translation-edit {
+  padding: 0.5em 0 2em 0;
   max-width: 700px;
   margin: auto;
 }
 
 .product-edit .main-title,
-.products-list-title {
+.translation-edit .main-title,
+.products-list-title,
+.translations-list-title {
   font-weight: bold;
   color: #333;
   font-size: 1.1em;
 }
 
-/* Products List */
+/* === PRODUCTS === */
 .products-list-admin .product-item-buttons button {
   display: inline-block;
   vertical-align: top;
@@ -44,4 +47,43 @@
 .btn-custom-color-1:active {
   background: #e60000;
   border-color: #e60000;
+}
+/* === TRANSLATIONS === */
+.translations-list {
+  max-width: 1000px;
+  padding: 0.5em 0 2em 0;
+  margin: auto;
+}
+.translation-item {
+  background: #eeeeef;
+  text-align: left;
+  padding: 1em;
+  margin: 0.2em;
+  display: inline-block;
+  width: 45%;
+}
+.translation-item-title {
+  margin: 0.2em 0 1em 0.5em;
+  /* font-weight: bold; */
+  font-style: italic;
+  color: #222;
+}
+
+.translation-item-lang {
+  margin: 0.2em 0.5em;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.translation-item-translation {
+  margin: 0.2em 2em 0.2em 0;
+}
+
+/* 900px */
+@media only screen and (max-width: 900px) {
+  .translation-item {
+    display: block;
+    width: auto;
+  }
 }
