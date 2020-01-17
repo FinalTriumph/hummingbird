@@ -17,7 +17,7 @@ function loginListener() {
 
 /* Logout */
 function logoutListener() {
-  $('a[href="/admin/logout"]').on('click', function(e) {
+  $('a[href*="/admin/logout"]').on('click', function(e) {
     e.preventDefault();
     $.post('/api/admin/logout', function(data) {
       window.location.href = '/admin';
@@ -143,7 +143,7 @@ $(document).ready(() => {
     loginListener();
   }
   // Logout
-  if ($('a[href="/admin/logout"]').length) {
+  if ($('a[href*="/admin/logout"]').length) {
     logoutListener();
   }
 
