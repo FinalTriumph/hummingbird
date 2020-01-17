@@ -1,19 +1,33 @@
 const router = require('express').Router();
 const session = require('express-session');
+const Translation = require('../models/translation.model');
 
 const headerItems = {
-  'dashboard': { 'href': '/admin', 'title': 'Dashboard' },
-  'products': { 'href': '/admin/products', 'title': 'Products' },
-  'translations': { 'href': '/admin/translations', 'title': 'Translations' },
-  'logout': { 'href': '/admin/logout', 'title': 'Logout' },
+  'dashboard': { 'href': '/admin', 'title': 't:Dashboard' },
+  'products': { 'href': '/admin/products', 'title': 't:Products' },
+  'translations': { 'href': '/admin/translations', 'title': 't:Translations' },
+  'logout': { 'href': '/admin/logout', 'title': 't:Logout' },
   //
-  'public': { 'href': '/', 'title': 'Public side' }
+  'public': { 'href': '/', 'title': 't:Public' }
 };
 
 const headerItemsNotAuthorized = {
-  'public': { 'href': '/', 'title': 'Public side' }
+  'public': { 'href': '/', 'title': 't:Public' }
 };
 
+// Set translations for views
+function initTranslations(req, res, next) {
+  res.locals.translations = {};
+  Translation.find({}).then(docs => {
+    if (!docs) next();
+    docs.forEach(item => {
+      res.locals.translations[item.key] = item.translations[language];
+    });
+    next();
+  });
+};
+
+// Check if admin
 function checkAdmin(req, res, next) {
   const authorized = req.session.authorized;
   const username = req.session.username;
@@ -21,12 +35,10 @@ function checkAdmin(req, res, next) {
 
   if (!authorized || !username || !username.length || status !== 'admin') {
     return res.render('layouts/admin', {
-      requestLang: req.lang,
       title: 'Login as administrator',
       view: 'login',
       headerItems: headerItemsNotAuthorized,
-      activeHeaderItem: '',
-      styles: ['elements/form'],
+      activeHeaderItem: ''
     });
   }
 
@@ -34,9 +46,9 @@ function checkAdmin(req, res, next) {
 }
 
 // Dashboard
-router.route('/').get(checkAdmin, (req, res) => {
+router.route('/').get(initTranslations, checkAdmin, (req, res) => {
   res.render('layouts/admin', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Dashboard | Admin',
     view: 'dashboard',
     headerItems: headerItems,
@@ -45,9 +57,9 @@ router.route('/').get(checkAdmin, (req, res) => {
 });
 
 // Products
-router.route('/products').get(checkAdmin, (req, res) => {
+router.route('/products').get(initTranslations, checkAdmin, (req, res) => {
   res.render('layouts/admin', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Products | Admin',
     view: 'products',
     headerItems: headerItems,
@@ -55,32 +67,30 @@ router.route('/products').get(checkAdmin, (req, res) => {
   });
 });
 
-router.route('/products/add').get(checkAdmin, (req, res) => {
+router.route('/products/add').get(initTranslations, checkAdmin, (req, res) => {
   res.render('layouts/admin', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Add New Product | Admin',
     view: 'products/add',
     headerItems: headerItems,
-    activeHeaderItem: '',
-    styles: ['elements/form'],
+    activeHeaderItem: ''
   });
 });
 
-router.route('/products/edit/:id').get(checkAdmin, (req, res) => {
+router.route('/products/edit/:id').get(initTranslations, checkAdmin, (req, res) => {
   res.render('layouts/admin', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Edit Product | Admin',
     view: 'products/edit',
     headerItems: headerItems,
-    activeHeaderItem: '',
-    styles: ['elements/form'],
+    activeHeaderItem: ''
   });
 });
 
 // Translations
-router.route('/translations').get(checkAdmin, (req, res) => {
+router.route('/translations').get(initTranslations, checkAdmin, (req, res) => {
   res.render('layouts/admin', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Translations | Admin',
     view: 'translations',
     headerItems: headerItems,
@@ -88,14 +98,13 @@ router.route('/translations').get(checkAdmin, (req, res) => {
   });
 });
 
-router.route('/translations/add').get(checkAdmin, (req, res) => {
+router.route('/translations/add').get(initTranslations, checkAdmin, (req, res) => {
   res.render('layouts/admin', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Add New Translation | Admin',
     view: 'translations/add',
     headerItems: headerItems,
-    activeHeaderItem: '',
-    styles: ['elements/form'],
+    activeHeaderItem: ''
   });
 });
 

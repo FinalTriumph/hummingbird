@@ -34,8 +34,9 @@ connection.once('open', () => {
 });
 
 // Set language to be used in all router files
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     const allowedLanguages = ['en', 'de', 'lv', 'ru'];
+    // Default language
     let language = 'en';
 
     var match = req.url.match(/^\/([A-Z]{2})([\/\?].*)?$/i);
@@ -46,7 +47,7 @@ app.use(function(req, res, next) {
         req.lang = language;
 
         if (!req.cookies['language'] || req.cookies['language'] !== language) {
-          res.cookie('language', language, { maxAge: 900000, httpOnly: true });
+          res.cookie('language', language, { httpOnly: true });
         }
       }
       req.url = match[2] || '/';
@@ -58,6 +59,9 @@ app.use(function(req, res, next) {
     else {
       req.lang = language;
     }
+
+    global.language = req.lang;
+
     next();
 });
 

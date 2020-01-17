@@ -2,8 +2,11 @@
   <div class="content">
     <div class="container dib-vat footer-nav-items">
       <div class="dib-vat tal">
-        <!-- TODO -->
-        <% Object.keys(headerItems).forEach(function(key) { %><a href="<%- headerItems[key]['href'] %>" class="nav-item-f db"><%- headerItems[key]['title'] %></a><% }); %>
+        <% Object.keys(headerItems).forEach(function(key) { %>
+          <a href="<%= url(headerItems[key]['href']) %>" class="nav-item-f db">
+            <%= t(headerItems[key]['title']) %>
+          </a>
+        <% }); %>
       </div>
     </div>
     <div class="container dib-vat">

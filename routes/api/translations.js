@@ -12,12 +12,6 @@ function checkAdmin(req, res, next) {
   next();
 }
 
-/* router.route('/get/:id').get((req, res) => {
-  Product.find({_id: req.params.id})
-    .then(product => res.json({'status': 'ok', 'product': product[0]}))
-    .catch(err => res.json({'status': 'error', 'message': 'Products not found'}));
-}); */
-
 router.route('/all').get((req, res) => {
   Translation.find()
     .then(translations => res.json({'status': 'ok', translations}))
@@ -34,17 +28,5 @@ router.route('/add').post(checkAdmin, (req, res) => {
     .then(() => res.json({'status': 'ok'}))
     .catch(err => res.json({'status': 'error', 'message': 'Translation not saved: ' + err}));
 });
-
-/* router.route('/update/:id').post(checkAdmin, (req, res) => {
-  Product.updateOne({_id: req.params.id}, {
-      image: req.body.image,
-      title: req.body.title,
-      description: req.body.description
-    })
-    .then(() => res.json({'status': 'ok'}))
-    .catch(err => res.json({'status': 'error', 'message': 'Product not updated: ' + err}));
-}); */
-
-// TODO Delete
 
 module.exports = router;

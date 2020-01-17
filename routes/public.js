@@ -1,17 +1,30 @@
 const router = require('express').Router();
+const Translation = require('../models/translation.model');
 
 const headerItems = {
-  'home': { 'href': '/', 'title': 'Home' },
-  'products': { 'href': '/products', 'title': 'Products' },
-  'about': { 'href': '/about', 'title': 'About' },
-  'contact': { 'href': '/contact', 'title': 'Contact' },
+  'home': { 'href': '/', 'title': 't:Home' },
+  'products': { 'href': '/products', 'title': 't:Products' },
+  'about': { 'href': '/about', 'title': 't:About' },
+  'contact': { 'href': '/contact', 'title': 't:Contact' },
   // TODO Only for development, will be removed
-  'admin': { 'href': '/admin', 'title': 'Admin side' }
+  'admin': { 'href': '/admin', 'title': 't:Admin' }
 };
 
-router.route('/').get((req, res) => {
+// Set target language and translations for views
+function initTranslations(req, res, next) {
+  res.locals.translations = {};
+  Translation.find({}).then(docs => {
+    if (!docs) next();
+    docs.forEach(item => {
+      res.locals.translations[item.key] = item.translations[language];
+    });
+    next();
+  });
+};
+
+router.route('/').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Home',
     view: 'index',
     headerItems: headerItems,
@@ -19,9 +32,9 @@ router.route('/').get((req, res) => {
   });
 });
 
-router.route('/products').get((req, res) => {
+router.route('/products').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Products',
     view: 'products',
     headerItems: headerItems,
@@ -29,9 +42,9 @@ router.route('/products').get((req, res) => {
   });
 });
 
-router.route('/about').get((req, res) => {
+router.route('/about').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'About',
     view: 'about',
     headerItems: headerItems,
@@ -39,9 +52,9 @@ router.route('/about').get((req, res) => {
   });
 });
 
-router.route('/contact').get((req, res) => {
+router.route('/contact').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    requestLang: req.lang,
+    // translations: readyTranslations,
     title: 'Contact',
     view: 'contact',
     headerItems: headerItems,

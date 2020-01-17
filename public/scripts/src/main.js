@@ -99,8 +99,8 @@ function getProductList() {
       if ($('.products-list').hasClass('products-list-public-index')) {
         descriptionLength = 400;
       }
-      $('<p class="product-title">' + val.title[requestLang] + '</p>').appendTo($textItems);
-      $('<p class="product-description">' + truncate(val.description[requestLang], descriptionLength) + '</p>').appendTo($textItems);
+      $('<p class="product-title">' + val.title[language] + '</p>').appendTo($textItems);
+      $('<p class="product-description">' + truncate(val.description[language], descriptionLength) + '</p>').appendTo($textItems);
       //
       $textItems.appendTo($item);
       //

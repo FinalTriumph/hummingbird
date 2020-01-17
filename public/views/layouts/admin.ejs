@@ -4,32 +4,18 @@
   <meta charset="utf-8">
   <title><%= title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/styles/src/main.css" rel="stylesheet" type="text/css">
-  <link href="/styles/src/admin.css" rel="stylesheet" type="text/css">
-  <link href="/styles/src/tools.css" rel="stylesheet" type="text/css">
-  <link href="/styles/src/buttons.css" rel="stylesheet" type="text/css">
-  <link href="/styles/src/elements/header.css" rel="stylesheet" type="text/css">
-  <link href="/styles/src/elements/footer.css" rel="stylesheet" type="text/css">
-  <% if (locals.styles) { %>
-    <% styles.forEach(function(style) { %>
-      <link href="/styles/src/<%- style %>.css" rel="stylesheet" type="text/css">
-    <% }) %>
-  <% } %>
+  <link href="/styles/dist/css/admin.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <%- include('../_functions'); %>
   <%- include('../elements/header', { headerItems: headerItems }); %>
   <%- include('../admin/' + view); %>
   <%- include('../elements/footer'); %>
   <script type="text/javascript">
-    const requestLang = '<%= requestLang %>';
+    const language = '<%= language %>';
   </script>
   <script src="/scripts/jquery.min.js"></script>
   <script src="/scripts/src/main.js"></script>
   <script src="/scripts/src/admin.js"></script>
-  <% if (locals.scripts) { %>
-    <% scripts.forEach(function(script) { %>
-      <script src="/scripts/src/<%- script %>.js"></script>
-    <% }) %>
-  <% } %>
 </body>
 </html>

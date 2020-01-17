@@ -1,0 +1,18 @@
+<%
+t = function(value) {
+  if (translations && translations[value]) {
+    return translations[value];
+  }
+  return value;
+}
+
+url = function(value) {
+  if (!value || value === '/') {
+    return '/' + language;
+  }
+  if (value.charAt(0) === '/') {
+    return '/' + language + value;
+  }
+  return '/' + language + '/' + value;
+}
+%>

@@ -13,8 +13,8 @@ function checkAdmin(req, res, next) {
 }
 
 router.route('/get/:id').get((req, res) => {
-  Product.find({_id: req.params.id})
-    .then(product => res.json({'status': 'ok', 'product': product[0]}))
+  Product.findById(req.params.id)
+    .then(product => res.json({'status': 'ok', 'product': product}))
     .catch(err => res.json({'status': 'error', 'message': 'Products not found'}));
 });
 
