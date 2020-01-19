@@ -1,5 +1,6 @@
 // All main styles
-@import "main.scss";
+@import "main";
 
 // Admin specific styles
-@import "themes/_admin.scss";
+@import "themes/admin";
+@import "layout/translations";

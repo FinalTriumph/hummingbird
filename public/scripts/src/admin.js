@@ -92,47 +92,61 @@ function addEditTranslationListener() {
 
 /* Get all translations */
 function getAllTranslations() {
-  console.log('Will get all translations');
   $.getJSON('/api/translations/all', data => {
-    // TODO
     if (data.status !== 'ok' || !data.translations || !data.translations.length) {
       alert('Error');
       // TODO add error message;
       console.log(data);
     }
-    //
+
+    // Add each translation
     $.each(data.translations, (key, val) => {
-      console.log({
-        'key': key,
-        'val': val
-      });
-      const $item = $('<div class="translation-item"></div>');
-      //
-      $('<div class="translation-item-title">' + val.key + '</div>').appendTo($item);
-      //
-      const $allTranslations = $('<div class="translation-item-translations"></div>');
-      $.each(val.translations, (lang, translation) => {
-        $container = $('<div class="translation-item-translation-container"></div>');
-        // Key
-        $('<div class="dib-vat translation-item-lang">' + lang + ':</div>').appendTo($container);
-        // Translation
-        $('<div class="dib-vat translation-item-translation">' + translation + '</div>').appendTo($container);
-        $container.appendTo($allTranslations);
-      });
-      //
-      $allTranslations.appendTo($item);
-      //
-      /* const $buttons = $('<div class="product-item-buttons"></div>');
-      if ($('.products-list').hasClass('products-list-public') || $('.products-list').hasClass('products-list-public-index')) {
-        $('<a href="/products/view/' + val._id + '"><button class="btn-style-2">More</button></a>').appendTo($buttons);
-      }
-      else if ($('.products-list').hasClass('products-list-admin')) {
-        $('<a href="/admin/products/edit/' + val._id + '"><button class="btn-style-1">Edit</button></a>').appendTo($buttons);
-        $('<a href="#"><button class="btn-style-1 btn-custom-color-1">Delete</button></a>').appendTo($buttons);
-      }
-      $buttons.appendTo($item); */
-      $item.prependTo('.translations-list');
+      addTranslationToList(val);
     });
+  });
+}
+
+function addTranslationToList(val) {
+  // Item container
+  const $item = $('<div class="translation-item"></div>');
+  // Title
+  $('<p class="translation-key"><span>Key:</span>' + val.key + '</p>').appendTo($item);
+  // All translations
+  const $allTranslations = $('<div class="all-translations"></div>');
+  $.each(val.translations, (lang, translation) => {
+    // Translation
+    $('<p class="translation-text"><span class="translation-lang">' + lang + ':</span>' + translation + '</p>').appendTo($allTranslations);
+  });
+  // Buttons
+  const $buttons = $('<div class="tranlslation-item-buttons"></div>');
+  $('<a href="/admin/translations/edit/' + val._id + '" class="btn-grey-1">Edit</a>').appendTo($buttons);
+  $('<a href="#" class="btn-red-1">Delete</a>').appendTo($buttons);
+  // Append translations
+  $allTranslations.appendTo($item);
+  // Append buttons
+  $buttons.appendTo($item);
+  // Prepend to list
+  $item.prependTo('.translations-list');
+}
+
+/* Get translation for edit */
+function getTranslationForEdit() {
+  const id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+  $.getJSON('/api/translations/get/' + id, data => {
+    // TODO
+    if (data.status !== 'ok' || !data.translation) {
+      alert('Error');
+      // TODO add error message;
+      console.log(data);
+    }
+    //
+    $('input[name="key"]').val(data.translation.key);
+    //
+    $.each(data.translation.translations, (key, val) => {
+      $('textarea[name="translations[' + key + ']"]').val(val);
+    });
+    //
+    $('.translation-edit').attr('action', $('.translation-edit').attr('action') + id);
   });
 }
 
@@ -161,8 +175,7 @@ $(document).ready(() => {
   if ($('.translation-edit').length) {
     // Get translation for edit
     if (window.location.href.indexOf('translations/edit/') > -1) {
-      // TODO
-      // getTranslationForEdit();
+      getTranslationForEdit();
     }
     // Add submit listener
     addEditTranslationListener();

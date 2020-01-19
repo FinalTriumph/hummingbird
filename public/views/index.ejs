@@ -1,5 +1,18 @@
 <div class="content-wrapper">
-  <div class="content">
+  <div class="index-top pth">
+    <div class="index-top-image dib-vam"></div>
+    <div class="index-top-triangle pth"></div>
+    <div class="index-top-text dib-vam">
+      <p><%-  t('t:Welcome') %></p>
+      <div class="index-top-text-buttons">
+        <a href="#best-offers" class="btn-blue-1"><%= t('t:Top Offers') %></a>
+        <a href="<%= url('products') %>" class="btn-blue-1"><%= t('t:All Products') %></a>
+        <a href="<%= url('contact') %>" class="btn-blue-1"><%= t('t:Contact') %></a>
+      </div>
+    </div>
+  </div>
+  <div class="content ptz">
+    <p id="best-offers" class="section-title"><%= t('t:Top Offers') %></p>
     <div class="products-list products-list-public-index"></div>
   </div>
 </div>

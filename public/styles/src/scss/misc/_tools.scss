@@ -7,6 +7,12 @@
   vertical-align: top;
 }
 
+.dib-vam {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
 .tal {
   text-align: left;
 }
@@ -17,6 +23,10 @@
 /* Padding top about headers height */
 .pth {
   padding-top: 3em;
+}
+
+.ptz {
+  padding-top: 0;
 }
 
 .ma {

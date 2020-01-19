@@ -12,6 +12,12 @@ function checkAdmin(req, res, next) {
   next();
 }
 
+router.route('/get/:id').get((req, res) => {
+  Translation.findById(req.params.id)
+    .then(translation => res.json({'status': 'ok', 'translation': translation}))
+    .catch(err => res.json({'status': 'error', 'message': 'Products not found'}));
+});
+
 router.route('/all').get((req, res) => {
   Translation.find()
     .then(translations => res.json({'status': 'ok', translations}))
@@ -27,6 +33,15 @@ router.route('/add').post(checkAdmin, (req, res) => {
   newTranslation.save()
     .then(() => res.json({'status': 'ok'}))
     .catch(err => res.json({'status': 'error', 'message': 'Translation not saved: ' + err}));
+});
+
+router.route('/update/:id').post(checkAdmin, (req, res) => {
+  Translation.updateOne({_id: req.params.id}, {
+      key: req.body.key,
+      translations: req.body.translations
+    })
+    .then(() => res.json({'status': 'ok'}))
+    .catch(err => res.json({'status': 'error', 'message': 'Translation not updated: ' + err}));
 });
 
 module.exports = router;

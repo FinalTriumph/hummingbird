@@ -1,0 +1,107 @@
+.index-top {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  background: $blue-color-1;
+  text-align: left;
+  @include vp-box-shadow(0 5px 10px -10px rgba(0,0,0,0.5));
+
+  .index-top-image {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    width: 45%;
+    height: 100%;
+    background-image: url('/images/fp_2.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    @include vp-background-size(cover);
+  }
+
+  .index-top-triangle {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 61%;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 450px;
+      background: $blue-color-1;
+      border-left: 1px solid #777;
+      @include vp-transform(rotate(10deg));
+      @include vp-box-shadow(-10px 0 15px -10px rgba(0, 0, 0, 1));
+    }
+  }
+
+  .index-top-text {
+    position: relative;
+    z-index: 4;
+    margin: 0 3% 0em 3%;
+    padding: 0;
+    width: 43%;
+    color: #fff;
+    p {
+      font-size: 1.7em;
+    }
+    .index-top-text-buttons {
+      margin: 3em auto -3em auto;
+      a {
+        margin: 1em 0.5em 0em 0;
+      }
+    }
+  }
+}
+
+.index-sep-line-top {
+  border: none;
+  height: 1px;
+  // background: #f0f0f0;
+  background: #ddd;
+  width: 90%;
+  margin: 5em auto 0 auto;
+}
+
+/* 750px */
+@media only screen and (max-width: 750px) {
+  .index-top {
+    height: auto;
+    width: 100%;
+
+    .index-top-image {
+      width: 100%;
+      height: 400px;
+      display: block;
+      background-position: 50% 65%;
+    }
+
+    .index-top-triangle {
+      right: 50%;
+      &:after {
+        top: 0;
+        width: 150px;
+        height: 900px;
+        @include vp-transform(rotate(80deg));
+      }
+    }
+
+    .index-top-text {
+      display: block;
+      width: auto;
+      max-width: 500px;
+      padding: 1em 2em;
+      margin: 0 auto;
+      .index-top-text-buttons {
+        margin: 3em auto;
+        a {
+          display: block;
+          text-align: center;
+          max-width: 500px;
+          padding: 0.7em;
+        }
+      }
+    }
+  }
+}

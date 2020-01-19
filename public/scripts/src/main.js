@@ -1,5 +1,15 @@
 function handleNavigation() {
   let navVisible = false;
+  var lastScrollTop = 0;
+  $(window).scroll(function(e){
+      var cst = $(this).scrollTop();
+      if (cst > lastScrollTop && (!navVisible || !$('.nav-lines').is(':visible'))) {
+          $('.header').slideUp(300);
+      } else {
+          $(".header").slideDown(300);
+      }
+      lastScrollTop = cst;
+  });
 
   $('.header .nav-lines').on('click', () => {
     if (navVisible) {
@@ -95,7 +105,7 @@ function getProductList() {
       $('<div class="product-item-image" style="background-image: url(' + val.image + ')"></div>').appendTo($item);
       //
       const $textItems = $('<div class="product-text-items"></div>');
-      let descriptionLength = 200;
+      let descriptionLength = 145;
       if ($('.products-list').hasClass('products-list-public-index')) {
         descriptionLength = 400;
       }
@@ -133,6 +143,17 @@ function handleLanguageChange() {
   });
 }
 
+function scrollToBestOffers() {
+  console.log('function()');
+  $('a[href="#best-offers"]').on('click', function (e) {
+    console.log('click()');
+    e.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#best-offers').offset().top
+    }, 300);
+  });
+}
+
 $(document).ready(() => {
   handleNavigation();
   handleLanguageNavigation();
@@ -140,5 +161,8 @@ $(document).ready(() => {
   // Products list
   if ($('.products-list').length) {
     getProductList();
+  }
+  if ($('#best-offers').length) {
+    scrollToBestOffers();
   }
 });

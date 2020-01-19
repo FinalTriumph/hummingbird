@@ -2,11 +2,9 @@
   position: fixed;
   width: 100%;
   background: #fafaff;
-  border-bottom: 1px solid #ddd;
+  // border-bottom: 1px solid #ddd;
   z-index: 999;
-  -webkit-box-shadow: 0 5px 10px -10px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 5px 10px -10px rgba(0,0,0,0.5);
-	box-shadow: 0 5px 10px -10px rgba(0,0,0,0.5);
+  @include vp-box-shadow(0 5px 10px -10px rgba(0,0,0,0.5));
 
   .content {
     padding: 0;
@@ -19,6 +17,7 @@
     float: left;
     padding: 1.2em 1.1em 1.1em 1.1em;
     font-weight: 600;
+    font-size: 0.95em;
     color: #444;
   }
 
@@ -26,13 +25,14 @@
     display: inline-block;
     color: #333;
     text-decoration: none;
+    font-size: 0.95em;
     outline: none;
     padding: 1.2em 1.1em 1.1em 1.1em;
     border-bottom: 2px solid #fafafa;
     transition: border-color 0.2s;
     &.active {
+      color: #145DA0;
       border-color: #145DA0;
-      color: #222;
     }
     &:hover {
       border-color: #145DA0;
@@ -72,12 +72,12 @@
 
   .horizontal {
     position: absolute;
-    width: 2em;
-    top: 0.9em;
-    right: 5.2em;
-  }
-  .horizontal .line {
-    margin: 4px 0;
+    width: 1.8em;
+    top: 1.1em;
+    right: 5.4em;
+    .line {
+      margin: 4px 0;
+    }
   }
   .lang-nav {
     display: inline-block;
@@ -90,7 +90,7 @@
     font-weight: bold;
     color: #444;
     border-left: 1px solid #ddd;
-    padding: 0.5em 1em 0.5em 1em;
+    padding: 0.4em 1em 0.4em 1em;
     cursor: pointer;
     margin-right: 0.4em;
     &:hover {
@@ -104,14 +104,12 @@
   .lang-nav-list {
     display: none;
     position: absolute;
-    top: 3.6em;
+    top: 3.5em;
     right: 0em;
     background: #fafaff;
     border: 1px solid #ddd;
     text-align: center;
-    -webkit-box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
-    -moz-box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
-    box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
+    @include vp-box-shadow(-2px 2px 5px -4px rgba(0,0,0,0.5));
 
     .lang-nav-list-item {
       text-decoration: none;
@@ -133,16 +131,15 @@
   /* Nav */
   .header {
     .nav {
+      width: 100%;
       display: none;
       position: absolute;
-      top: 3.6em;
+      top: 3.5em;
       right: 0em;
       background: #fafaff;
       border: 1px solid #ddd;
       text-align: center;
-      -webkit-box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
-    	-moz-box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
-    	box-shadow: -2px 2px 5px -4px rgba(0,0,0,0.5);
+      @include vp-box-shadow(0 5px 10px -10px rgba(0,0,0,0.5));
     }
     .nav-lines {
       display: block;
@@ -154,9 +151,11 @@
       text-align: left;
       display: block;
       border: none;
-      padding: 1.05em 7em 1em 1.2em;
+      border-bottom: 1px solid #eee;
+      padding: 1.05em 3em;
       &.active {
         border-left: 2px solid #145DA0;
+        border-bottom: 1px solid #eee;
         background: #fafaff;
         color: #145DA0;
       }

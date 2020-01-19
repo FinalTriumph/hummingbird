@@ -108,4 +108,14 @@ router.route('/translations/add').get(initTranslations, checkAdmin, (req, res) =
   });
 });
 
+router.route('/translations/edit/:id').get(initTranslations, checkAdmin, (req, res) => {
+  res.render('layouts/admin', {
+    // translations: readyTranslations,
+    title: 'Edit Translation | Admin',
+    view: 'translations/edit',
+    headerItems: headerItems,
+    activeHeaderItem: ''
+  });
+});
+
 module.exports = router;

@@ -1,3 +1,51 @@
+.btn {
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: bold;
+  border: 1px solid;
+  padding: 0.6em 1.5em;
+  border-radius: $button-border-radius;
+  cursor: pointer;
+  @include vp-box-shadow(0 2px 3px -2px rgba(0,0,0,0.7));
+}
+
+.btn-blue-1 {
+  @extend .btn;
+  background: $blue-color-1;
+  color: #eaeaea;
+  border-color: #eaeaea;
+  &:hover {
+    background: #eaeaea;
+    color: $blue-color-1;
+  }
+}
+
+.btn-grey-1 {
+  @extend .btn;
+  border-color: #777;
+  &:hover {
+    background: #777;
+    border-color: #777;
+    color: #fff;
+  }
+}
+
+.btn-red-1 {
+  @extend .btn;
+  border-color: #cc0000;
+  &:hover {
+    background: #cc0000;
+    border-color: #cc0000;
+    color: #fff;
+  }
+  &:active {
+    background: #e60000;
+    border-color: #e60000;
+  }
+}
+
+/* TODO */
+
 /*
 btn-style-1
 */
@@ -14,7 +62,7 @@ btn-style-1
   padding: 0.8em;
   /* border: 2px solid #00A300; */
   border: 1px solid #00b700;
-  border-radius: 3px;
+  border-radius: $button-border-radius;
   -webkit-box-shadow: 0 2px 3px -2px rgba(30,30,30,0.7);
   -moz-box-shadow: 0 2px 3px -2px rgba(30,30,30,0.7);
   box-shadow: 0 2px 3px -2px rgba(30,30,30,0.7);
@@ -42,7 +90,7 @@ btn-style-2
   margin-top: 1em;
   padding: 0.7em 3em;
   border: 1px solid #00A300;
-  border-radius: 3px;
+  border-radius: $button-border-radius;
 }
 .btn-style-2:hover {
   background: #00b700;
@@ -58,20 +106,4 @@ btn-style-2
 .btn-style-2:disabled {
   pointer-events: none;
   opacity: 0.3;
-}
-
-/*
-.btn-custom-...
-*/
-.btn-custom-color-1 {
-  border-color: #cc0000;
-}
-.btn-custom-color-1:hover {
-  background: #cc0000;
-  border-color: #cc0000;
-  color: #fff;
-}
-.btn-custom-color-1:active {
-  background: #e60000;
-  border-color: #e60000;
 }

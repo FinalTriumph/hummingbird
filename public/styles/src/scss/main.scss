@@ -1,20 +1,28 @@
+// TODO Font
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+
+// Autoprefixer
+@import "./node_modules/sass-autoprefixer/scss/prefixes";
+
 // Abstract
-@import "abstracts/_variables.scss";
+@import "abstracts/variables";
 
 // Base
 
-// Components
-@import "components/_buttons.scss";
-
-// Layout
-@import "layout/_footer.scss";
-@import "layout/_forms.scss";
-@import "layout/_header.scss";
-
-// Misc
-@import "misc/_tools.scss";
+// Themes
+@import "themes/default";
 
 // Pages
+@import "pages/home";
 
-// Themes
-@import "themes/_default.scss";
+// Layout
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/header";
+@import "layout/products";
+
+// Components
+@import "components/buttons";
+
+// Misc
+@import "misc/tools";
