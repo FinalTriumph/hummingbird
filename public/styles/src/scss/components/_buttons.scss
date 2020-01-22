@@ -1,9 +1,9 @@
 .btn {
   display: inline-block;
-  font-size: 0.85em;
+  font-size: 0.9em;
   font-weight: bold;
   border: 1px solid;
-  padding: 0.6em 1.5em;
+  padding: 0.7em 1.7em;
   border-radius: $button-border-radius;
   cursor: pointer;
   @include vp-box-shadow(0 2px 3px -2px rgba(0,0,0,0.7));
@@ -14,15 +14,18 @@
   background: $blue-color-1;
   color: #eaeaea;
   border-color: #eaeaea;
+  text-shadow: 1px 1px #444;
   &:hover {
     background: #eaeaea;
     color: $blue-color-1;
+    text-shadow: 1px 1px #fff;
   }
 }
 
 .btn-grey-1 {
   @extend .btn;
   border-color: #777;
+  @include vp-box-shadow(0 2px 2px -2px rgba(0,0,0,0.5));
   &:hover {
     background: #777;
     border-color: #777;
@@ -33,6 +36,7 @@
 .btn-red-1 {
   @extend .btn;
   border-color: #cc0000;
+  @include vp-box-shadow(0 2px 2px -2px rgba(0,0,0,0.5));
   &:hover {
     background: #cc0000;
     border-color: #cc0000;

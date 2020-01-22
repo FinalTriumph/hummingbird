@@ -23,6 +23,13 @@ const ProductSchema = new mongoose.Schema({
     // Russian
     ru: { type: String, required: true }
   },
+  price: { type: Number, required: true },
+  active: { type: Boolean },
+  weight: { type: Number },
+  best: { type: Boolean },
+  sale: { type: Boolean },
+  salePrice: { type: Number },
+  saleDiscount: { type: Number }
 });
 ProductSchema.plugin(timestamps);
 

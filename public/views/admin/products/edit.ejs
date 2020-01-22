@@ -5,7 +5,7 @@
       <div class="input-group">
         <div class="translation-group">
           <p class="title">Image URL</p>
-          <input type="text" name="image" required/>
+          <input type="text" name="image" required />
         </div>
         <div class="translation-group">
           <p class="title">Title</p>
@@ -20,6 +20,43 @@
           <span class="lang">DE</span><textarea name="description[de]" rows="3" required></textarea><br />
           <span class="lang">LV</span><textarea name="description[lv]" rows="3" required></textarea><br />
           <span class="lang">RU</span><textarea name="description[ru]" rows="3" required></textarea>
+        </div>
+        <div class="translation-group">
+          <p class="title">Price (€):</p>
+          <input type="number" step="0.01" min="0" name="price" required />
+        </div>
+        <div class="translation-group">
+          <p class="title">Weight:</p>
+          <input type="number" step="1" min="0" name="weight" />
+        </div>
+        <div class="translation-group translation-group-split-3">
+          <p class="title">Active:</p>
+          <label class="switch">
+            <input type="checkbox" name="active" value="true" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="translation-group translation-group-split-3">
+          <p class="title">Best:</p>
+          <label class="switch">
+            <input type="checkbox" name="best" value="true" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="translation-group translation-group-split-3">
+          <p class="title">Sale:</p>
+          <label class="switch">
+            <input type="checkbox" name="sale" value="true" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="translation-group input-group-disabled">
+          <p class="title">Sale price (€):</p>
+          <input type="number" step="0.01" min="0" name="salePrice" />
+        </div>
+        <div class="translation-group input-group-disabled">
+          <p class="title">Sale discount (%):</p>
+          <input type="number" step="1" min="0" name="saleDiscount" />
         </div>
       </div>
       <input class="btn-style-2" type="submit" value="Submit" />

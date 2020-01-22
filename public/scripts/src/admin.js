@@ -66,7 +66,38 @@ function getProductForEdit() {
       $('textarea[name="description[' + key + ']"]').val(val);
     });
     //
+    $('input[name="price"]').val(data.product.price);
+    //
+    if (data.product.active) {
+      $('input[name="active"]').val(data.product.active);
+      $('input[name="active"]').attr('checked', true );
+    }
+    //
+    if (data.product.best) {
+      $('input[name="best"]').val(data.product.best);
+      $('input[name="best"]').attr('checked', true );
+    }
+    //
+    if (data.product.sale) {
+      $('input[name="sale"]').val(data.product.sale);
+      $('input[name="sale"]').attr('checked', true );
+      $('input[name="salePrice"]').val(data.product.salePrice || '');
+      $('input[name="saleDiscount"]').val(data.product.saleDiscount || '');
+      $('input[name="salePrice"], input[name="saleDiscount"]').parent().removeClass('input-group-disabled');
+    }
+    //
     $('.product-edit').attr('action', $('.product-edit').attr('action') + id);
+  });
+}
+
+/* Product sale switch listener */
+function addSaleSwitchListener() {
+  $('input[name="sale"]').on('click', () => {
+    if ($('input[name="sale"]').is(':checked')) {
+      $('input[name="salePrice"], input[name="saleDiscount"]').parent().removeClass('input-group-disabled');
+    } else {
+      $('input[name="salePrice"], input[name="saleDiscount"]').parent().addClass('input-group-disabled');
+    }
   });
 }
 
@@ -167,6 +198,8 @@ $(document).ready(() => {
     if (window.location.href.indexOf('products/edit/') > -1) {
       getProductForEdit();
     }
+    // Add sales swicth listener
+    addSaleSwitchListener();
     // Add submit listener
     addEditProductListener();
   }

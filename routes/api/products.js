@@ -28,7 +28,14 @@ router.route('/add').post(checkAdmin, (req, res) => {
   const newProduct = new Product({
     image: req.body.image,
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    price: req.body.price,
+    active: req.body.active || false,
+    weight: req.body.weight,
+    best: req.body.best || false,
+    sale: req.body.sale || false,
+    salePrice: req.body.salePrice,
+    saleDiscount: req.body.saleDiscount
   });
 
   newProduct.save()
@@ -37,10 +44,17 @@ router.route('/add').post(checkAdmin, (req, res) => {
 });
 
 router.route('/update/:id').post(checkAdmin, (req, res) => {
-  Product.updateOne({_id: req.params.id}, {
+  Product.findByIdAndUpdate(req.params.id, {
       image: req.body.image,
       title: req.body.title,
-      description: req.body.description
+      description: req.body.description,
+      price: req.body.price,
+      active: req.body.active || false,
+      weight: req.body.weight,
+      best: req.body.best || false,
+      sale: req.body.sale || false,
+      salePrice: req.body.salePrice,
+      saleDiscount: req.body.saleDiscount
     })
     .then(() => res.json({'status': 'ok'}))
     .catch(err => res.json({'status': 'error', 'message': 'Product not updated: ' + err}));

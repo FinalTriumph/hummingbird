@@ -2,16 +2,16 @@
   position: relative;
   overflow: hidden;
   height: 400px;
-  background: $blue-color-1;
+  background: $index-top-color;
   text-align: left;
-  @include vp-box-shadow(0 5px 10px -10px rgba(0,0,0,0.5));
+  @include vp-box-shadow(0 5px 5px -5px rgba(0,0,0,0.3));
 
   .index-top-image {
     position: relative;
     z-index: 1;
     margin: 0;
     padding: 0;
-    width: 45%;
+    width: 44%;
     height: 100%;
     background-image: url('/images/fp_2.jpeg');
     background-position: center;
@@ -29,20 +29,21 @@
       position: absolute;
       width: 150px;
       height: 450px;
-      background: $blue-color-1;
+      background: $index-top-color;
       border-left: 1px solid #777;
       @include vp-transform(rotate(10deg));
-      @include vp-box-shadow(-10px 0 15px -10px rgba(0, 0, 0, 1));
+      @include vp-box-shadow(-10px 0 10px -10px rgba(0, 0, 0, 1));
     }
   }
 
   .index-top-text {
     position: relative;
     z-index: 4;
-    margin: 0 3% 0em 3%;
+    margin: 0 3% 0em 1%;
     padding: 0;
-    width: 43%;
+    width: 51%;
     color: #fff;
+    text-shadow: 1px 1px #444;
     p {
       font-size: 1.7em;
     }
