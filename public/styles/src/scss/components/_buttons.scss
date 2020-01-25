@@ -23,23 +23,9 @@
 }
 
 .btn-blue-2 {
-  float: right;
   border: 1px solid #ddd; // $blue-color-1;
-  color: #444; // $blue-color-1;
-  padding: 0.4em 1.3em;
-  margin: -0.4em 0 0 0;
   border-radius: $button-border-radius;
-  font-size: 0.9em;
-  &:hover {
-    background: $blue-color-1;
-    border-color: $blue-color-1;
-    color: #eaeaea;
-  }
-}
-
-.btn-blue-3 {
-  @extend .btn-blue-2;
-  float: none;
+  color: #444; // $blue-color-1;
   padding: 0.4em 1.3em;
   font-size: 0.8em;
   font-weight: bold;
@@ -83,6 +69,7 @@
   padding: 0.7em 1em;
   text-align: right;
   font-size: 0.9em;
+  color: #333;
   &:hover {
     background: $blue-color-1;
     border-color: $blue-color-1;
@@ -95,6 +82,28 @@
     &:hover {
       color: #eaeaea;
     }
+  }
+}
+
+.btn-green-1 {
+  // @extend .btn;
+  border: 1px solid #ddd;
+  border-radius: $button-border-radius;
+  color: #444;
+  padding: 0.6em 1.5em;
+  font-size: 0.85em;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  &:hover {
+    background: $green-color-1;
+    border-color: $green-color-1;
+    color: #eaeaea;
+  }
+  &:active {
+    background: $green-color-2;
+    border-color: $green-color-2;
+    color: #eaeaea;
   }
 }
 

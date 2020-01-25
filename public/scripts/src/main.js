@@ -4,6 +4,11 @@ function handleJsonError(data) {
   console.log(data);
 }
 
+/**
+  * TODO
+  * @desc
+  * @return
+*/
 function handleNavigation() {
   let navVisible = false;
   var lastScrollTop = 0;
@@ -76,6 +81,13 @@ function handleLanguageNavigation() {
   });
 }
 
+/**
+  * TODO
+  * @desc
+  * @param
+  * @param
+  * @return
+*/
 function truncate(string, maxLength) {
   if (string.length <= maxLength) {
     return string;
@@ -136,6 +148,12 @@ function getProductList() {
 }
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+  * TODO
+  * @desc
+  * @param
+  * @return
+*/
 function createProductsGrid(targetContainer) {
   $.getJSON('/api/products/all', data => {
     if (data.status !== 'ok' || !data.products.length) return handleJsonError(data);
@@ -149,16 +167,34 @@ function createProductsGrid(targetContainer) {
       // Description
       $('<p class="item-description">' + truncate(product.description[language], 150) + '</p>').appendTo($item);
       // Price
-      $price = $('<p class="item-price">' + product.price + ' €</p>');
-      /* if (product.sale && product.salePrice && product.saleDiscount) {
-        $('<span class="salePrice">' + product.salePrice + ' € (-'+ product.saleDiscount +'%)</span>').appendTo($price);
-        $price.addClass('oldPrice');
-      } */
-      $('<a href="#" class="btn-blue-2">More</a>').appendTo($price);
+      $price = $('<p class="item-price"><span class="regular-price">' + product.price + ' €</span></p>');
+      if (product.sale && product.salePrice && product.saleDiscount) {
+        $('<span class="sale-price">' + product.salePrice + ' €</span>').appendTo($price);
+        $('<span class="sale-discount">-'+ product.saleDiscount +'%</span>').appendTo($price);
+        $price.addClass('item-price-with-discount');
+      }
       $price.appendTo($item);
+      // More button
+      $('<a href="#" class="btn-green-1 item-more-btn">More</a>').appendTo($item);
       // Add item to grid
       $item.prependTo(targetContainer);
     });
+
+    handleItemImageHeigh('.item-image');
+  });
+}
+
+/**
+  * TODO
+  * @desc Set item image container height same as width and add listener, to keep it that way
+  * @param
+  * @return
+*/
+function handleItemImageHeigh(target) {
+  $(target).css('height', $(target).width());
+  //
+  $(window).resize(() => {
+    $(target).css('height', $(target).width());
   });
 }
 
@@ -194,10 +230,12 @@ $(document).ready(() => {
   if ($('.products-list').length) {
     getProductList();
   }
+
   // Products grid
   if ($('.products-grid').length) {
     createProductsGrid('.products-grid');
   }
+
   if ($('#best-offers').length) {
     scrollToBestOffers();
   }
