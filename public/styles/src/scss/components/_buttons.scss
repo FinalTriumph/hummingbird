@@ -22,6 +22,35 @@
   }
 }
 
+.btn-blue-2 {
+  float: right;
+  border: 1px solid #ddd; // $blue-color-1;
+  color: #444; // $blue-color-1;
+  padding: 0.4em 1.3em;
+  margin: -0.4em 0 0 0;
+  border-radius: $button-border-radius;
+  font-size: 0.9em;
+  &:hover {
+    background: $blue-color-1;
+    border-color: $blue-color-1;
+    color: #eaeaea;
+  }
+}
+
+.btn-blue-3 {
+  @extend .btn-blue-2;
+  float: none;
+  padding: 0.4em 1.3em;
+  font-size: 0.8em;
+  font-weight: bold;
+  display: block;
+  &:hover {
+    background: $blue-color-1;
+    border-color: $blue-color-1;
+    color: #eaeaea;
+  }
+}
+
 .btn-grey-1 {
   @extend .btn;
   border-color: #777;
@@ -47,6 +76,28 @@
     border-color: #e60000;
   }
 }
+
+.btn-category {
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding: 0.7em 1em;
+  text-align: right;
+  font-size: 0.9em;
+  &:hover {
+    background: $blue-color-1;
+    border-color: $blue-color-1;
+    color: #eaeaea;
+  }
+
+  &.active {
+    border-right: 2px solid #145DA0;
+    color: #145DA0;
+    &:hover {
+      color: #eaeaea;
+    }
+  }
+}
+
 
 /* TODO */
 

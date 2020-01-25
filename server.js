@@ -47,7 +47,7 @@ app.use((req, res, next) => {
         req.lang = language;
 
         if (!req.cookies['language'] || req.cookies['language'] !== language) {
-          res.cookie('language', language, { httpOnly: true });
+          res.cookie('language', language, { maxAge: 31556952000, httpOnly: true });
         }
       }
       req.url = match[2] || '/';

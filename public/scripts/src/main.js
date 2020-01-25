@@ -1,3 +1,9 @@
+// TODO
+function handleJsonError(data) {
+  alert('Error');
+  console.log(data);
+}
+
 function handleNavigation() {
   let navVisible = false;
   var lastScrollTop = 0;
@@ -90,6 +96,7 @@ function truncate(string, maxLength) {
   return readyWords.join(' ') + ' ...';
 }
 
+// TODO This will be removed ///////////////////////////////////////////////////
 function getProductList() {
   $.getJSON('/api/products/all', data => {
     // TODO
@@ -127,6 +134,33 @@ function getProductList() {
     });
   });
 }
+////////////////////////////////////////////////////////////////////////////////
+
+function createProductsGrid(targetContainer) {
+  $.getJSON('/api/products/all', data => {
+    if (data.status !== 'ok' || !data.products.length) return handleJsonError(data);
+
+    $.each(data.products, (key, product) => {
+      const $item = $('<div class="grid-item"></div>');
+      // Image
+      $('<div class="item-image" style="background-image: url(' + product.image + ')"></div>').appendTo($item);
+      // Title
+      $('<p class="item-title">' + product.title[language] + '</p>').appendTo($item);
+      // Description
+      $('<p class="item-description">' + truncate(product.description[language], 150) + '</p>').appendTo($item);
+      // Price
+      $price = $('<p class="item-price">' + product.price + ' €</p>');
+      /* if (product.sale && product.salePrice && product.saleDiscount) {
+        $('<span class="salePrice">' + product.salePrice + ' € (-'+ product.saleDiscount +'%)</span>').appendTo($price);
+        $price.addClass('oldPrice');
+      } */
+      $('<a href="#" class="btn-blue-2">More</a>').appendTo($price);
+      $price.appendTo($item);
+      // Add item to grid
+      $item.prependTo(targetContainer);
+    });
+  });
+}
 
 function handleLanguageChange() {
   $('.lang-nav-list-item').on('click', (e) => {
@@ -144,9 +178,7 @@ function handleLanguageChange() {
 }
 
 function scrollToBestOffers() {
-  console.log('function()');
   $('a[href="#best-offers"]').on('click', function (e) {
-    console.log('click()');
     e.preventDefault();
     $('html, body').animate({
         scrollTop: $('#best-offers').offset().top
@@ -161,6 +193,10 @@ $(document).ready(() => {
   // Products list
   if ($('.products-list').length) {
     getProductList();
+  }
+  // Products grid
+  if ($('.products-grid').length) {
+    createProductsGrid('.products-grid');
   }
   if ($('#best-offers').length) {
     scrollToBestOffers();
