@@ -10,6 +10,12 @@ const headerItems = {
   'admin': { 'href': '/admin', 'title': 't:Admin' }
 };
 
+const categories = {
+  'all': { 'href': '/products', 'title': 't:All Products' },
+  'best': { 'href': '/products?category=best', 'title': 't:Top Offers' },
+  'sale': { 'href': '/products?category=sale', 'title': 't:Sale' },
+};
+
 // Set target language and translations for views
 function initTranslations(req, res, next) {
   res.locals.translations = {};
@@ -24,7 +30,6 @@ function initTranslations(req, res, next) {
 
 router.route('/').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    // translations: readyTranslations,
     title: 'Home',
     view: 'index',
     headerItems: headerItems,
@@ -33,18 +38,20 @@ router.route('/').get(initTranslations, (req, res) => {
 });
 
 router.route('/products').get(initTranslations, (req, res) => {
+  const category = (req.query.category && categories.hasOwnProperty(req.query.category)) ? req.query.category : 'all';
   res.render('layouts/main', {
-    // translations: readyTranslations,
     title: 'Products',
     view: 'products',
     headerItems: headerItems,
-    activeHeaderItem: 'products'
+    activeHeaderItem: 'products',
+    categories: categories,
+    activeCategory: category,
+    activeCategoryTitle: categories[category].title
   });
 });
 
 router.route('/about').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    // translations: readyTranslations,
     title: 'About',
     view: 'about',
     headerItems: headerItems,
@@ -54,7 +61,6 @@ router.route('/about').get(initTranslations, (req, res) => {
 
 router.route('/contact').get(initTranslations, (req, res) => {
   res.render('layouts/main', {
-    // translations: readyTranslations,
     title: 'Contact',
     view: 'contact',
     headerItems: headerItems,

@@ -20,21 +20,50 @@
     color: $blue-color-1;
     text-shadow: 1px 1px #fff;
   }
+  &:active {
+    border-color: $blue-color-1;
+    @include vp-box-shadow(none);
+  }
 }
 
 .btn-blue-2 {
-  border: 1px solid #ddd; // $blue-color-1;
-  border-radius: $button-border-radius;
+  @extend .btn;
+  border-color: #ddd;
   color: #444; // $blue-color-1;
   padding: 0.4em 1.3em;
-  font-size: 0.8em;
-  font-weight: bold;
+  font-size: 0.85em;
   display: block;
+  @include vp-box-shadow(none);
   &:hover {
     background: $blue-color-1;
     border-color: $blue-color-1;
     color: #eaeaea;
   }
+}
+
+.btn-blue-3 {
+  @extend .btn-blue-1;
+  padding: 0.7em 3em;
+  margin: 1.5em 0 2.5em 0;
+  border-color: $blue-color-1;
+  &:hover {
+    background: $blue-color-2;
+    border-color: $blue-color-2;
+    color: #eaeaea;
+    text-shadow: 1px 1px #444;
+  }
+  &:active {
+    border-color: #fff;
+    @include vp-box-shadow(none);
+  }
+}
+
+.btn-blue-4 {
+  @extend .btn-blue-3;
+  display: block;
+  width: 18em;
+  margin: 1.5em;
+  padding: 0.8em;
 }
 
 .btn-grey-1 {
@@ -86,15 +115,14 @@
 }
 
 .btn-green-1 {
-  // @extend .btn;
-  border: 1px solid #ddd;
-  border-radius: $button-border-radius;
+  @extend .btn;
+  border-color: #ddd;
   color: #444;
   padding: 0.6em 1.5em;
   font-size: 0.85em;
-  font-weight: bold;
   display: block;
   text-align: center;
+  @include vp-box-shadow(none);
   &:hover {
     background: $green-color-1;
     border-color: $green-color-1;
@@ -102,7 +130,7 @@
   }
   &:active {
     background: $green-color-2;
-    border-color: $green-color-2;
+    border-color: #fff;
     color: #eaeaea;
   }
 }

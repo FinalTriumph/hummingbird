@@ -1,4 +1,29 @@
 /* Admin theme */
+.admin-products-grid {
+  width: 100%;
+  .grid-item {
+    width: 23%;
+    .product-item-admin-buttons {
+      margin: 0.5em 1.7em 1.5em 1.7em;
+      text-align: center;
+      .edit-delete-button {
+        width: 100%;
+        padding: 0.5em 0;
+        margin-top: 0.5em;
+      }
+    }
+
+    @media only screen and (max-width: 1000px) {
+      width: 31%;
+    }
+    @media only screen and (max-width: 820px) {
+      width: 48%;
+    }
+    @media only screen and (max-width: 550px) {
+      width: 98%;
+    }
+  }
+}
 
 /* === LOGIN === */
 .admin-login {

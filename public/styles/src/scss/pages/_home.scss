@@ -56,15 +56,6 @@
   }
 }
 
-.index-sep-line-top {
-  border: none;
-  height: 1px;
-  // background: #f0f0f0;
-  background: #ddd;
-  width: 90%;
-  margin: 5em auto 0 auto;
-}
-
 /* 750px */
 @media only screen and (max-width: 750px) {
   .index-top {
@@ -104,5 +95,9 @@
         }
       }
     }
+  }
+
+  .section-title-home {
+    text-align: center;
   }
 }

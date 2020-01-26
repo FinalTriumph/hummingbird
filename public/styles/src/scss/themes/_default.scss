@@ -33,12 +33,17 @@ button {
 
 .section-title {
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: #444;
-  margin: 1em auto;
+  margin: 1.5em 0 0 0;
   padding: 1em 0;
-  width: 90%;
+  width: 100%;
+  text-align: left;
   border-bottom: 1px solid #f0f0f0;
+
+  .section-title-text {
+    margin-left: 1em;
+  }
 }
 
 /* === PRODUCTS LIST === */

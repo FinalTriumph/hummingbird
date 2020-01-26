@@ -108,54 +108,14 @@ function truncate(string, maxLength) {
   return readyWords.join(' ') + ' ...';
 }
 
-// TODO This will be removed ///////////////////////////////////////////////////
-function getProductList() {
-  $.getJSON('/api/products/all', data => {
-    // TODO
-    if (data.status !== 'ok' || !data.products.length) {
-      alert('Error');
-      // TODO add error message;
-      console.log(data);
-    }
-    //
-    $.each(data.products, (key, val) => {
-      const $item = $('<div class="product-item"></div>');
-      //
-      $('<div class="product-item-image" style="background-image: url(' + val.image + ')"></div>').appendTo($item);
-      //
-      const $textItems = $('<div class="product-text-items"></div>');
-      let descriptionLength = 145;
-      if ($('.products-list').hasClass('products-list-public-index')) {
-        descriptionLength = 400;
-      }
-      $('<p class="product-title">' + val.title[language] + '</p>').appendTo($textItems);
-      $('<p class="product-description">' + truncate(val.description[language], descriptionLength) + '</p>').appendTo($textItems);
-      //
-      $textItems.appendTo($item);
-      //
-      const $buttons = $('<div class="product-item-buttons"></div>');
-      if ($('.products-list').hasClass('products-list-public') || $('.products-list').hasClass('products-list-public-index')) {
-        $('<a href="/products/view/' + val._id + '"><button class="btn-style-2">More</button></a>').appendTo($buttons);
-      }
-      else if ($('.products-list').hasClass('products-list-admin')) {
-        $('<a href="/admin/products/edit/' + val._id + '"><button class="btn-style-1">Edit</button></a>').appendTo($buttons);
-        $('<a href="#"><button class="btn-style-1 btn-custom-color-1">Delete</button></a>').appendTo($buttons);
-      }
-      $buttons.appendTo($item);
-      $item.prependTo('.products-list');
-    });
-  });
-}
-////////////////////////////////////////////////////////////////////////////////
-
 /**
   * TODO
   * @desc
   * @param
   * @return
 */
-function createProductsGrid(targetContainer) {
-  $.getJSON('/api/products/all', data => {
+function createProductsGrid(url, targetContainer, admin = false) {
+  $.getJSON(url, data => {
     if (data.status !== 'ok' || !data.products.length) return handleJsonError(data);
 
     $.each(data.products, (key, product) => {
@@ -174,8 +134,17 @@ function createProductsGrid(targetContainer) {
         $price.addClass('item-price-with-discount');
       }
       $price.appendTo($item);
+      // Admin buttons
+      if (admin) {
+        const $buttons = $('<div class="product-item-admin-buttons"></div>');
+        $('<a href="/admin/products/edit/' + product._id + '" class="btn-grey-1 edit-delete-button">Edit</a>').appendTo($buttons);
+        $('<a href="#" class="btn-red-1 edit-delete-button">Delete</a>').appendTo($buttons);
+        $buttons.appendTo($item);
+      }
       // More button
-      $('<a href="#" class="btn-green-1 item-more-btn">More</a>').appendTo($item);
+      else {
+        $('<a href="#" class="btn-green-1 item-more-btn">More</a>').appendTo($item);
+      }
       // Add item to grid
       $item.prependTo(targetContainer);
     });
@@ -219,6 +188,7 @@ function scrollToBestOffers() {
     $('html, body').animate({
         scrollTop: $('#best-offers').offset().top
     }, 300);
+    $('a[href="#best-offers"]').blur();
   });
 }
 
@@ -226,16 +196,16 @@ $(document).ready(() => {
   handleNavigation();
   handleLanguageNavigation();
   handleLanguageChange();
-  // Products list
-  if ($('.products-list').length) {
-    getProductList();
-  }
-
   // Products grid
   if ($('.products-grid').length) {
-    createProductsGrid('.products-grid');
+    if ($('.home-products-grid').length) {
+      createProductsGrid('/api/products/best', '.home-products-grid');
+    } else if ($('.admin-products-grid').length) {
+      createProductsGrid('/api/products/admin', '.admin-products-grid', true);
+    } else {
+      createProductsGrid('/api/products/' + activeCategory, '.products-grid');
+    }
   }
-
   if ($('#best-offers').length) {
     scrollToBestOffers();
   }
