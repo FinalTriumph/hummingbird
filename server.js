@@ -2,7 +2,13 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
 const cors = require('cors');
+
 const mongoose = require('mongoose');
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 const path = require('path');
 
 require('dotenv').config();
