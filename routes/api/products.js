@@ -52,7 +52,8 @@ router.route('/get/edit/:id').get(checkAdmin, (req, res) => {
 
 router.route('/add').post(checkAdmin, (req, res) => {
   const newProduct = new Product({
-    image: req.body.image,
+    image: req.body.image || '',
+    imageSource: req.body.image ? (req.body.image.indexOf('://') !== -1 ? 'external' : 'cloudinary') : '',
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
@@ -71,7 +72,8 @@ router.route('/add').post(checkAdmin, (req, res) => {
 
 router.route('/update/:id').post(checkAdmin, (req, res) => {
   Product.findByIdAndUpdate(req.params.id, {
-      image: req.body.image,
+      image: req.body.image || '',
+      imageSource: req.body.image ? (req.body.image.indexOf('://') !== -1 ? 'external' : 'cloudinary') : '',
       title: req.body.title,
       description: req.body.description,
       price: req.body.price,
@@ -86,6 +88,10 @@ router.route('/update/:id').post(checkAdmin, (req, res) => {
     .catch(err => res.json({status: 'error', message: 'Product not updated: ' + err}));
 });
 
-// TODO Delete
+router.route('/delete/:id').get(checkAdmin, (req, res) => {
+  Product.findByIdAndRemove(req.params.id)
+    .then(() => res.json({status: 'ok'}))
+    .catch(err => res.json({status: 'error', message: 'Product not removed: ' + err}));
+});
 
 module.exports = router;

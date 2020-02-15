@@ -1,3 +1,11 @@
+// TODO
+function handleJsonError(data) {
+  alert('Error');
+  // TODO add error message;
+  console.log(data);
+  $('.overlay').hide();
+}
+
 /* Login */
 function loginListener() {
   $('.admin-login form').on('submit', function(e) {
@@ -45,6 +53,24 @@ function addEditProductListener() {
   });
 }
 
+/* Remove */
+function removeProductClicked(e) {
+  e.preventDefault();
+  $('.overlay').show();
+  const removeFilename = $('#removeImageBtn').data('filename');
+  if (removeFilename.length) {
+    $.getJSON('/api/images/delete/' + removeFilename, (deleteResponse) => {
+      if (deleteResponse.status !== 'ok') return handleJsonError(deleteResponse);
+      //
+      $('input[name="image"]').val('');
+      $('#imagePreview').html('');
+      $('input[name="image"]').show();
+      $('#removeImageBtn').addClass('dn');
+      $('.overlay').hide();
+    });
+  }
+}
+
 /* Get product for edit */
 function getProductForEdit() {
   const id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
@@ -54,9 +80,24 @@ function getProductForEdit() {
       alert('Error');
       // TODO add error message;
       console.log(data);
+      return;
     }
-    //
-    $('input[name="image"]').val(data.product.image);
+
+    // Image
+    if (data.product.image) {
+      $('input[name="image"]').val(data.product.image);
+
+      if (data.product.imageSource && data.product.imageSource !== 'external') {
+        $('input[name="image"]').hide();
+        $('<img src="/images/get/' + data.product.image + '" />').appendTo('#imagePreview');
+        $('#removeImageBtn').data('filename', data.product.image);
+        $('#removeImageBtn').removeClass('dn');
+        $('#removeImageBtn').on('click', e => {
+          removeProductClicked(e);
+        });
+      }
+    }
+
     //
     $.each(data.product.title, (key, val) => {
       $('input[name="title[' + key + ']"]').val(val);
@@ -181,6 +222,80 @@ function getTranslationForEdit() {
   });
 }
 
+/**
+  * TODO
+  * @desc
+  *
+*/
+function handleImageUpload() {
+  $('#uploadImageBtn').on('click', (e) => {
+    e.preventDefault();
+    $('#uploadImage').click();
+  });
+
+  $('#uploadImage').on('change', function() {
+    $('.overlay').show();
+    $('#uploadImage').prop('disabled', true);
+    $('#uploadImageBtn').prop('disabled', true);
+
+    const imageData = new FormData();
+    imageData.append('image', $(this)[0].files[0]);
+
+    if ($('input[name="image"]').val().length && $('input[name="image"]').val().indexOf('://') > -1) {
+      imageData.append('oldImageFilename', $('input[name="image"]').val());
+    }
+
+    $.ajax({
+      url: '/api/images/upload',
+      type: 'POST',
+      processData: false, // important
+      contentType: false, // important
+      data: imageData,
+      success: function(data) {
+        $('#imagePreview').html('');
+        const removeFilename = $('#removeImageBtn').data('filename') || '';
+        if (removeFilename.length) {
+          $.getJSON('/api/images/delete/' + removeFilename, (deleteResponse) => {
+            if (deleteResponse.status !== 'ok') console.log(deleteResponse);
+          });
+        }
+        $('input[name="image"]').val(data.filename);
+        $('input[name="image"]').hide();
+        $('<img src="/images/get/' + data.filename + '" />').appendTo('#imagePreview');
+        $('#uploadImage').removeAttr('disabled');
+        $('#uploadImageBtn').removeAttr('disabled');
+        //
+        $('#removeImageBtn').data('filename', data.filename);
+        $('#removeImageBtn').removeClass('dn');
+        $('#removeImageBtn').off('click');
+        $('#removeImageBtn').on('click', e => {
+          removeProductClicked(e);
+        });
+        $('.overlay').hide();
+      },
+      error: function(err) {
+        console.log(err);
+        $('#uploadImage').removeAttr('disabled');
+        $('#uploadImageBtn').removeAttr('disabled');
+        $('.overlay').hide();
+      }
+    });
+  });
+}
+
+// TODO Temporary solution
+function deleteProduct(title, id) {
+  if (confirm('Delete "' + title + '"?')) {
+    $.getJSON('/api/products/delete/' + id, data => {
+      if (data.status === 'ok') {
+        window.location.href = '/admin/products';
+        return;
+      }
+      handleJsonError(data);
+    });
+  }
+}
+
 /* Add necessary listeners */
 $(document).ready(() => {
   // Login
@@ -217,5 +332,10 @@ $(document).ready(() => {
   // Translations list
   if ($('.translations-list').length) {
     getAllTranslations();
+  }
+
+  // Image upload
+  if ($('#uploadImage').length) {
+    handleImageUpload();
   }
 });

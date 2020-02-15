@@ -4,8 +4,14 @@
       <p class="main-title">Edit product</p>
       <div class="input-group">
         <div class="translation-group">
-          <p class="title">Image URL</p>
-          <input type="text" name="image" required />
+          <p class="title">Image</p>
+          <input type="text" name="image" />
+          <div class="img-upload-container">
+            <div id="imagePreview"></div>
+            <button class="btn-blue-5" id="uploadImageBtn">Upload</button>
+            <button class="btn-blue-5 dn" id="removeImageBtn">Remove</button>
+          </div>
+          <input type="file" id="uploadImage" name="uploadedImage" accept="image/png, image/jpeg">
         </div>
         <div class="translation-group">
           <p class="title">Title</p>

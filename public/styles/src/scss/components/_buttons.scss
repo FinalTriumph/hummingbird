@@ -66,6 +66,13 @@
   padding: 0.8em;
 }
 
+.btn-blue-5 {
+  @extend .btn-blue-2;
+  display: inline-block;
+  font-size: 0.9em;
+  padding: 0.5em 2em;
+}
+
 .btn-grey-1 {
   @extend .btn;
   border-color: #777;
@@ -174,7 +181,7 @@ btn-style-2
 */
 .btn-style-2 {
   background: #00A300;
-  width: 99%;
+  width: 95%;
   max-width: 300px;
   font-size: 0.9em;
   color: #fff;

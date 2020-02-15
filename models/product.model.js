@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 
 const ProductSchema = new mongoose.Schema({
-  image: { type: String, required: true },
+  image: { type: String },
+  imageSource: { type: String },
   title: {
     // English
     en: { type: String, required: true },

@@ -6,6 +6,7 @@ input,
 textarea {
   font-family: 'Open Sans', sans-serif;
   @include vp-box-shadow(0 1px 3px 0px rgba(50,50,50,0.2));
+  @include vp-box-sizing(border-box);
 }
 
 textarea {
@@ -19,7 +20,7 @@ textarea {
 
 .input-group input,
 .input-group textarea {
-  width: 91%;
+  width: 95%;
   margin: 0.5em auto;
   padding: 0.7em 0.9em;
   font-size: 0.9em;
@@ -55,7 +56,7 @@ textarea {
 }
 
 .translation-group .title {
-  width: 94.5%;
+  width: 95%;
   margin: auto;
   padding: 0;
   padding: 0.7em 0 0.5em 0;

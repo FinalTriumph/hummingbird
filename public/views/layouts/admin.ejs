@@ -9,6 +9,7 @@
 <body>
   <%- include('../_functions'); %>
   <%- include('../elements/header', { headerItems: headerItems }); %>
+  <div class="overlay"><div class="spinner"></div></div>
   <%- include('../admin/' + view); %>
   <%- include('../elements/footer'); %>
   <script type="text/javascript">

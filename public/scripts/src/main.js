@@ -7,7 +7,7 @@ function handleJsonError(data) {
 /**
   * TODO
   * @desc
-  * @return
+  *
 */
 function handleNavigation() {
   let navVisible = false;
@@ -54,6 +54,11 @@ function handleNavigation() {
   });
 }
 
+/**
+  * TODO
+  * @desc
+  *
+*/
 function handleLanguageNavigation() {
   let langNavVisible = false;
 
@@ -78,6 +83,26 @@ function handleLanguageNavigation() {
   $('.header .active-lang, .header .lang-nav-list').on('click', (e) => {
       e.stopPropagation();
       return $(e.target).hasClass('lang-nav-list-item');
+  });
+}
+
+/**
+  * TODO
+  * @desc
+  *
+*/
+function handleLanguageChange() {
+  $('.lang-nav-list-item').on('click', (e) => {
+    e.preventDefault();
+
+    const currentPathnameParts = window.location.pathname.split('/');
+    const readyPathNameParts = [];
+    for (let i = 0; i < currentPathnameParts.length; i++) {
+      if (currentPathnameParts[i].length > 2) {
+        readyPathNameParts.push(currentPathnameParts[i]);
+      }
+    }
+    window.location.href = $(e.target).attr('href') + '/' + readyPathNameParts.join('/');
   });
 }
 
@@ -114,6 +139,22 @@ function truncate(string, maxLength) {
   * @param
   * @return
 */
+function imageUrlFromProduct(product) {
+  if (!product.image) {
+    // TODO
+    return '/images/default-image.jpg';
+  }
+  if (!product.imageSource || product.imageSource == 'external') {
+    return product.image;
+  }
+  return '/images/get/' + product.image + '';
+}
+
+/**
+  * TODO
+  * @desc
+  * @param
+*/
 function createProductsGrid(url, targetContainer, admin = false) {
   $.getJSON(url, data => {
     if (data.status !== 'ok' || !data.products.length) return handleJsonError(data);
@@ -121,7 +162,7 @@ function createProductsGrid(url, targetContainer, admin = false) {
     $.each(data.products, (key, product) => {
       const $item = $('<div class="grid-item"></div>');
       // Image
-      $('<div class="item-image" style="background-image: url(' + product.image + ')"></div>').appendTo($item);
+      $('<div class="item-image" style="background-image: url(' + imageUrlFromProduct(product) + ')"></div>').appendTo($item);
       // Title
       $('<p class="item-title">' + product.title[language] + '</p>').appendTo($item);
       // Description
@@ -138,8 +179,13 @@ function createProductsGrid(url, targetContainer, admin = false) {
       if (admin) {
         const $buttons = $('<div class="product-item-admin-buttons"></div>');
         $('<a href="/admin/products/edit/' + product._id + '" class="btn-grey-1 edit-delete-button">Edit</a>').appendTo($buttons);
-        $('<a href="#" class="btn-red-1 edit-delete-button">Delete</a>').appendTo($buttons);
+        $('<a href="javascript:;" onclick="deleteProduct(\''+product.title[language]+'\', \''+product._id+'\');" class="btn-red-1 edit-delete-button delete-product">Delete</a>').appendTo($buttons);
         $buttons.appendTo($item);
+        if (product.active) {
+          $item.addClass('grid-item-active');
+        } else {
+          $item.addClass('grid-item-not-active');
+        }
       }
       // More button
       else {
@@ -150,14 +196,15 @@ function createProductsGrid(url, targetContainer, admin = false) {
     });
 
     handleItemImageHeigh('.item-image');
+    setAllToHighest('.item-description');
   });
 }
 
 /**
-  * TODO
+  *
   * @desc Set item image container height same as width and add listener, to keep it that way
-  * @param
-  * @return
+  * @param string item image container class or id
+  *
 */
 function handleItemImageHeigh(target) {
   $(target).css('height', $(target).width());
@@ -167,21 +214,11 @@ function handleItemImageHeigh(target) {
   });
 }
 
-function handleLanguageChange() {
-  $('.lang-nav-list-item').on('click', (e) => {
-    e.preventDefault();
-
-    const currentPathnameParts = window.location.pathname.split('/');
-    const readyPathNameParts = [];
-    for (let i = 0; i < currentPathnameParts.length; i++) {
-      if (currentPathnameParts[i].length > 2) {
-        readyPathNameParts.push(currentPathnameParts[i]);
-      }
-    }
-    window.location.href = $(e.target).attr('href') + '/' + readyPathNameParts.join('/');
-  });
-}
-
+/**
+  *
+  * @desc On 'a[href="#best-offers"]' click animate scroll to '#best-offers'
+  *
+*/
 function scrollToBestOffers() {
   $('a[href="#best-offers"]').on('click', function (e) {
     e.preventDefault();
@@ -192,10 +229,26 @@ function scrollToBestOffers() {
   });
 }
 
+/**
+  *
+  * @desc Set height of all target items the same as highest
+  *
+*/
+function setAllToHighest(target) {
+  var maxHeight = 0;
+  $(target).each(function() {
+    if ($(this).outerHeight() > maxHeight) {
+      maxHeight = $(this).outerHeight();
+    }
+  }).height(maxHeight);
+}
+
 $(document).ready(() => {
+  // Navigation
   handleNavigation();
   handleLanguageNavigation();
   handleLanguageChange();
+
   // Products grid
   if ($('.products-grid').length) {
     if ($('.home-products-grid').length) {
@@ -206,6 +259,8 @@ $(document).ready(() => {
       createProductsGrid('/api/products/' + activeCategory, '.products-grid');
     }
   }
+
+  //
   if ($('#best-offers').length) {
     scrollToBestOffers();
   }

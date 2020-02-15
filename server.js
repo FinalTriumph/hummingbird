@@ -68,15 +68,19 @@ app.use((req, res, next) => {
 // Full
 const publicRouter = require('./routes/public');
 const adminRouter = require('./routes/admin');
+const imagesRouter = require('./routes/images');
 app.use('/', publicRouter);
 app.use('/admin', adminRouter);
+app.use('/images', imagesRouter);
 // API
 const productsApiRouter = require('./routes/api/products');
 const translationsApiRouter = require('./routes/api/translations');
 const adminApiRouter = require('./routes/api/admin');
+const imagesApiRouter = require('./routes/api/images');
 app.use('/api/products', productsApiRouter);
 app.use('/api/translations', translationsApiRouter);
 app.use('/api/admin', adminApiRouter);
+app.use('/api/images', imagesApiRouter);
 
 // All public assets
 app.use(express.static(__dirname + '/public'));

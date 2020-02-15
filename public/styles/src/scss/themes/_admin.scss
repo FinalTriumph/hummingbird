@@ -8,7 +8,7 @@
       text-align: center;
       .edit-delete-button {
         width: 100%;
-        padding: 0.5em 0;
+        padding: 0.6em 0;
         margin-top: 0.5em;
       }
     }
@@ -23,6 +23,30 @@
       width: 98%;
     }
   }
+
+  .grid-item-active {
+    background-color: #f9fef9;
+  }
+  .grid-item-not-active {
+    background-color: #faecec;
+  }
+}
+
+.img-upload-container {
+  width: 95%;
+  margin: auto;
+  text-align: left;
+}
+
+#uploadImage {
+  display: none;
+}
+
+#imagePreview img {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0.5em;
+  @include vp-box-shadow(0 1px 3px 0px rgba(50,50,50,0.2));
 }
 
 /* === LOGIN === */

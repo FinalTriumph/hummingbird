@@ -46,6 +46,55 @@ button {
   }
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background-image: linear-gradient(120deg, #eaee44, #33d0ff);
+  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 998;
+  display: none;
+
+  .spinner {
+    position: absolute;
+    z-index: 999;
+    left: 48%;
+    left: calc(50% - 35px);
+    top: 20%;
+    height: 70px;
+    width: 70px;
+    margin:0px auto;
+    -webkit-animation: rotation .6s infinite linear;
+    -moz-animation: rotation .6s infinite linear;
+    -o-animation: rotation .6s infinite linear;
+    animation: rotation .6s infinite linear;
+    border: 3px solid #ddd;
+    border-top: 3px solid $blue-color-2;
+    border-radius: 100%;
+    @include vp-box-shadow(0 0 2px 0 rgba(0,0,0,0.7));
+  }
+}
+
+@-webkit-keyframes rotation {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+  from {-moz-transform: rotate(0deg);}
+  to {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+  from {-o-transform: rotate(0deg);}
+  to {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(359deg);}
+}
+
 /* === PRODUCTS LIST === */
 .product-item {
   display: inline-block;
