@@ -28,7 +28,7 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nodemon": "^2.0.2",
     "sass-autoprefixer": "^1.0.1"
   }
